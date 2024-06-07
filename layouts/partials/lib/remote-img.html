@@ -1,0 +1,39 @@
+{{/*  Render attributes  */}}
+{{ $isHidden := cond (ne .hidden nil) "true" "false" }}
+{{ $isSmall := cond (ne .small nil) "true" "false" }}
+{{ $maxWidth := cond (ne .small nil) "max-w-xxxxs" "max-w-xs" }}
+
+{{/*  Conditional attributes  */}}
+{{ $alt := cond (ne .alt nil) .alt "" }}
+{{ $imgClass := cond (ne .imgClass nil) .imgClass "" }}
+{{ $picClass := cond (ne .picClass nil) .picClass "" }}
+{{ $size := cond (ne .size nil) .size "300" }}
+{{ $loading := cond (ne .loading nil) .loading "lazy" }}
+
+{{/*  Image URLs  */}}
+{{ $cleanUrl := replace .src "image/upload/" "" }}
+{{ $resize := print "damruetek/q_auto:good,c_scale,w_" $size "/" }}
+{{ $url := replace $cleanUrl "damruetek/" $resize }}
+{{ $jpg := $url | replaceRE "(jpg|jpeg|png)$" "jpg" }}
+{{ $webp := $url | replaceRE "(jpg|jpeg|png)$" "webp" }}
+{{ $avif := $url | replaceRE "(jpg|jpeg|png)$" "avif" }}
+
+<picture
+  class="{{ with .picClass }}{{ . }}{{ else }}img-wrap flex items-center justify-center my-4 w-full{{ end }}"
+  {{ if .fill }}style="max-width: {{ .size }}px;"{{ end }}
+  {{ if ne .tabindex nil }}tabindex="{{ .tabindex }}"{{ end }}
+>
+  <source srcset="{{ $avif }}" type="image/avif" />
+  <source srcset="{{ $webp }}" type="image/webp" />
+  <img
+    src="{{ $jpg }}"
+    alt="{{ .alt }}"
+    class="{{ with .imgClass }}{{ . }}{{ else }}{{ $maxWidth }} w-full{{ end }}"
+    width="{{ $size }}"
+    style="max-width: {{ .size }}px;"
+    data-small="{{ $isSmall }}"
+    aria-hidden="{{ $isHidden }}"
+    loading="{{ $loading }}"
+    {{ with .active }}data-active="{{ . }}"{{ end }}
+  />
+</picture>

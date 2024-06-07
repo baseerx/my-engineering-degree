@@ -1,0 +1,16 @@
+items:
+  - iconImg: california.png
+    name: Top Schools In California
+    relLink: /near-you/carpenter/california/
+  - iconImg: how-to-become.png
+    name: How to Become A Medical Assistant
+    relLink: /careers/medical-assistant/how-to-become/
+  - iconImg: certification.png
+    name: Medical Assistant Certification
+    relLink: /careers/medical-assistant/certification/
+  - iconImg: education-and-training.png
+    name: Medical Assistant Education And Training
+    relLink: /careers/medical-assistant/education-and-training/
+  - iconImg: salary-and-career-outlook.png
+    name: Medical Assistant Salary And Career Outlook
+    relLink: /careers/medical-assistant/salary-and-career-outlook/

@@ -1,0 +1,12 @@
+<!-- layouts/shortcodes/img.html -->
+
+{{ $src := .Get "src" }}
+
+{{ with $src }}
+  <img
+    src="{{ $src | absURL }}"
+
+  />
+{{ else }}
+  {{ errorf "Image shortcode: 'src' parameter is required" }}
+{{ end }}

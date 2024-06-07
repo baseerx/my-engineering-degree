@@ -1,0 +1,15 @@
+{{/* Service Worker */}}
+{{ $sw := resources.Get "js/sw.js" | resources.ExecuteAsTemplate "sw.js" . }}
+<script>
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register("{{ $sw.Permalink }}", { scope: "/" });
+    navigator.serviceWorker.ready.then(registration => {
+      console.info('Service Worker is ready.');
+    });
+    window.addEventListener("load", () => {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ command: "trimCaches" });
+      }
+    });
+  }
+</script>

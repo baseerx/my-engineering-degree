@@ -1,0 +1,14 @@
+home:
+  hero:
+    heading: Explore Top Trade Schools Near You
+    copy: Featured Careers
+    buttons:
+      first: Career Overview
+      second: Explore Programs
+  content:
+    featuredContent:
+      heading: Top Trade Schools Featured Content
+      copy:
+    careers:
+      heading: Careers
+      copy: Dolor Sit Amet

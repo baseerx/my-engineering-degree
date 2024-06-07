@@ -1,0 +1,42 @@
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;">
+    <defs>
+        <radialGradient id="fade">
+            <stop offset="0%" stop-color="rgba(254, 214, 154,0.5)" />
+            <stop offset="75%" stop-color="rgba(255,255,255,0)" />
+        </radialGradient>
+    </defs>
+    <g>
+        <path
+            d="M192.25,57.25L259.25,65.225M231.75,220L182.75,184.25L130,165L77.25,134.5L10,149.75L73.75,191L31.625,219.875L10,149.75L-49.25,123.25L25.5,95.5L-7.75,57.25L31.625,19.875L-17.25,-15.75"
+            style="fill:none;fill-rule:nonzero;stroke:#fed69a;stroke-width:0.25px;" />
+        <path d="M-7.75,57.25L59.25,65.25L97.5,95.5L150.75,123.25L77.125,134.375L25.375,95.375M92.5,226.25L73.75,191"
+            style="fill:none;fill-rule:nonzero;stroke:#fed69a;stroke-width:0.25px;" />
+        <path
+            d="M130,165L144.5,210.5L182.75,184.25L210,149.75L150.75,123.25L130,165L73.75,191L77.25,134.5L97.5,95.5L134.75,67.25L192.25,57.25L144.375,10.375L92.5,26.25L73.75,-9L31.625,19.875L59.25,65.25L25.5,95.5L10,149.75L-17.25,184.25L31.75,220"
+            style="fill:none;fill-rule:nonzero;stroke:#fed69a;stroke-width:0.25px;" />
+        <path
+            d="M130,-35L144.625,10.625L182.75,-15.75M150.75,123.25L134.75,67.25L59.25,65.25L92.5,26.25M225.5,95.5L134.75,67.25M97.5,95.5L25.5,95.5"
+            style="fill:none;fill-rule:nonzero;stroke:#fed69a;stroke-width:0.25px;" />
+        <path
+            d="M-55.5,10.5L31.625,19.875L92.5,26.25L134.75,67.25L144.375,10.375L231.75,20L192.25,57.25L225.5,95.5L150.75,123.25L182.75,184.25M73.75,-9L144.375,10.375M144.5,210.5L73.75,191M10,-50.25L31.75,20M25.5,95.5L-65.25,67.25"
+            style="fill:none;fill-rule:nonzero;stroke:#fed69a;stroke-width:0.25px;" />
+    </g>
+    <g>
+        <circle cx="192.25" cy="57.25" r="1.25" fill="url(#fade)" />
+        <circle cx="134.75" cy="67.25" r="1.25" fill="url(#fade)" />
+        <circle cx="150.75" cy="123.25" r="1.25" fill="url(#fade)" />
+        <circle cx="182.75" cy="184.25" r="1.25" fill="url(#fade)" />
+        <circle cx="130" cy="165" r="1.25" fill="url(#fade)" />
+        <circle cx="77.25" cy="134.5" r="1.25" fill="url(#fade)" />
+        <circle cx="73.75" cy="191" r="1.25" fill="url(#fade)" />
+        <circle cx="10" cy="149.75" r="1.25" fill="url(#fade)" />
+        <circle cx="25.5" cy="95.5" r="1.25" fill="url(#fade)" />
+        <circle cx="31.75" cy="20" r="1.25" fill="url(#fade)" />
+        <circle cx="92.5" cy="26.25" r="1.25" fill="url(#fade)" />
+        <circle cx="144.5" cy="10.5" r="1.25" fill="url(#fade)" />
+        <circle cx="59.25" cy="65.25" r="1.25" fill="url(#fade)" />
+        <circle cx="97.5" cy="95.5" r="1.25" fill="url(#fade)" />
+    </g>
+</svg>

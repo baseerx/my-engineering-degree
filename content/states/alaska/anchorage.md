@@ -1,0 +1,28 @@
+---
+_schema: default
+title: Trade Schools in Anchorage
+description:
+metaTitle: Trade Schools in Anchorage | Top Trade Schools
+metaDescription: >-
+  Explore our top trade schools in Anchorage for career-focused vocational and
+  technical education.
+menu:
+  header:
+    params:
+      icon: {}
+---
+Trade schools in Anchorage are responsible for producing some of the brightest technical minds in Alaska. Here, candidates may enroll to receive in-demand skills in various fields, from welding and plumbing to HVAC technology, electrical and electronics, and CNC machine technology, among many others.
+
+In the following section, we explore some of the best destinations for candidates in the city to receive the best trade and technical training in Anchorage. We also highlight key details such as the tuition range for students to expect, possible features and coursework, and admission requirements when possible.
+
+## **Top Vocational Trade Schools in Anchorage**
+
+The following are the most prominent trade schools in Anchorage, Alaska.
+
+{{< school-card schoolname="University of Alaska, Anchorage " statename="Alaska" stateAB="AK " cityname="Anchorage" studytype="Online + Campus" teaser="<p><a href=\"https://www.uaa.alaska.edu/\">University of Alaska, Anchorage</a>, is one of the premier trade and technical training destinations in Anchorage and the entire state. The school offers arts and sciences, business, engineering, health, and community-oriented programs.</p>" maintext="<p>Candidates can also participate in continuing education and apprenticeship programs. Some common options under the apprenticeship arrangement include the automotive mechanic apprenticeship and diesel mechanic apprenticeship.</p><p>The school also offers welding and construction-related training with the Department of Labor and Workforce Development.</p>" tuition=" $8,376 - $23,150" contactdetails="<ul><li><p>3190 Alumni Drive (SSB 221), Anchorage, AK 99508</p></li><li><p>(907) 786-6465</p></li><li><p>uaa_admissionsoffice@alaska.edu</p></li></ul>" schoollink="" rel="" buttontext="" >}}
+
+{{< school-card schoolname="Northern Industrial Training" statename="Alaska" stateAB="AK" cityname="Anchorage " studytype="Online + Campus" teaser="<p><a href=\"https://www.nitalaska.com/\">Northern Industrial Training</a> offers career training in several trade and technical fields. Some popular options include welding, automotive mechanics, truck driving, and construction. As one would expect from the best training schools, these programs incorporate both classroom training and practical sessions thanks to modern facilities and a work-ready environment.<br /></p>" maintext="<p>For most available programs, candidates must be 18 years old to apply. The truck driving program is an exception, which requires candidates to be at least 19 years old. Aspiring health workers may also consider the health and safety program available here.</p>" tuition="$6,000 - $18,250" contactdetails="<ul><li><p>3201 C Street Suite 308, Anchorage, AK 99503</p></li><li><p>(907) 743-7700</p></li><li><p>ancinfo@nitalaska.com</p></li></ul>" schoollink="" rel="" buttontext="" >}}
+
+{{< school-card schoolname="Alaska Joint Electrical Apprenticeship & Training Trust" statename="Alaska" stateAB="AK" cityname="Anchorage" studytype=" Online + Campus" teaser="<p>The <a href=\"http://alaskaelectricalapprenticeship.org\">Alaska Joint Electrical Apprenticeship &amp; Training Trust</a> offers comprehensive training for aspiring electricians in several specialty areas, such as the inside wireman training, outside wireman training, and telecommunications program.</p>" maintext="<p>Most of these programs can be completed in 6 - 8 weeks. Enrollment is open all year long. Most programs require that candidates participate in a short interview.</p><p>The programs offer rigorous hands-on training and possible job placement assistance upon graduation. They are products of a partnership between the <em>International Brotherhood of Electrical Workers Local 1547</em> and the <em>Alaska Chapter of the National Electrical Contractors Association.</em></p><p>Candidates typically enjoy the opportunity to earn as they learn.</p>" tuition="Free - $25 application fee" contactdetails="<ul><li><p>Anchorage (Main Office): 5800 B. Street, Anchorage, AK 99518</p></li><li><p>(907) 337-9508</p></li><li><p>office@ajeatt.org</p></li></ul>" schoollink="" rel="" buttontext="" >}}
+
+{{< school-card schoolname="Alaska Laborers Training" statename="Alaska " stateAB="AK" cityname="Anchorage" studytype="Campus only" teaser="<p><a href=\"https://aklts.org\">Alaska Laborers Training School</a>, located in Anchorage and Fairbanks, offers several apprenticeship programs that can be completed between 4 to 5 years. These programs cover several construction disciplines, including craft labor, masons, etc.</p>" maintext="<p>Candidates who get accepted here will receive a chance to earn some income while they learn. The coverage also includes possible health insurance, dental, and training benefits.</p><p>To be admitted into the program, candidates must be residents of Alaska with a valid driver's license and at least a 3-year driving record. They must also be prepared to go through a hair follicle drug test.</p>" tuition="Free" contactdetails="<ul><li><p>Anchorage Apprenticeship program: 17805 Old Glenn Highway</p><p>Chugiak, AK 99567</p></li><li><p>(907) 345-3853</p></li><li><p>training@aklts.org</p></li></ul>" schoollink="" rel="" buttontext="" >}}

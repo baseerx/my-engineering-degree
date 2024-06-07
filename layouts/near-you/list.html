@@ -1,0 +1,150 @@
+{{ define "hero" }}
+  <section
+    id="hero"
+    class="auto-rows-min grid items-center mb-0 mt-5 mx-auto pb-0 pt-8 px-0 relative w-full"
+    data-type="hero"
+    data-nosnippet
+  >
+    <h1
+      class="col-start-2 row-start-1 md:text-6xl mb-6 mx-auto text-4xl text-center w-full"
+      style="max-width: 100%;"
+      data-type="herolead"
+    >
+      {{ .Title }}
+    </h1>
+    {{ with .Params.author }}
+      <p class="col-start-2 mt-auto mx-auto pb-6 row-start-2 text-lg">
+        <span class="text-lg text-slate-400">Written by:</span>
+        <span class="font-semibold text-primary">{{ . }}</span>
+      </p>
+    {{ end }}
+    
+
+{{ if not (isset .Params "include_esyoh") }}
+    {{ partial "main/funnel-widget.html" . }}
+{{ else if .Params.include_esyoh }}
+    {{ partial "main/funnel-widget.html" . }}
+{{ end }}
+
+   
+
+  </section>
+     {{ if .Params.include_careernow }}
+<section class="w-full">
+    
+          {{ partial "main/career-now.html" . }}
+    
+</section>
+   {{ end }}
+{{ end }}
+
+
+{{ define "main" }}
+  {{ $title := cond (ne .Params.selectTitle nil) .Params.selectTitle .Title }}
+  {{ $isBasePage := eq .File.Path "near-you/_index.md" }}
+  {{ if $isBasePage }}
+    <section class="flex flex-col items-start justify-start py-6 relative w-full">
+      <ul class="flex flex-col items-start justify-start list-none m-0 p-0 w-full">
+        {{ range $i, $item := .Pages.ByParam "listTitle" }}
+          {{ $delay := mul $i 50 }}
+          <li
+            class="school-item border border-l-8 border-primary border-solid flex flex-col items-start justify-start my-3 opacity-0 p-3 relative sm:flex-row sm:items-center sm:justify-between w-full"
+            style="animation-delay: {{ $delay }}ms;"
+          >
+            <span
+              class="absolute border-0 border-r-8 border-r-transparent border-solid border-t-8 border-t-primary left-0 top-0"
+              aria-hidden="true"
+            ></span>
+            <div
+              class="flex flex-col items-start justify-start max-w-88 w-full"
+            >
+              <h2 class="w-full">{{ $item.Params.listTitle }}</h2>
+            </div>
+           <label class="sr-only" for="states">Select a state</label>
+{{ $pages := .Pages.ByParam "listTitle" }}
+{{ $initial := index $pages 0 }}
+{{ $default := cond (ne .Params.defaultSelection nil) .Params.defaultSelection $initial }}
+<select id="states" class="max-w-48 my-3 sm:m-0 w-full" data-default="{{ $default.RelPermalink }}">
+  <option value selected disabled>Pick your state</option>
+  {{ range $pages }}
+    {{ $label := cond (ne .Params.selectTitle nil) .Params.selectTitle .Title }}
+    <option value="{{ .RelPermalink }}">{{ $label }}</option>
+  {{ end }}
+</select>
+            <a
+              id="request-info"
+              href="{{ $item.Permalink }}"
+              class="bg-primary border border-primary border-solid duration-300 ease-in-out focus:bg-white focus:text-primary hover:bg-white hover:text-primary m-0 mt-3 max-w-40 px-4 py-2 no-underline rounded sm:my-0 text-center text-white transition-colors w-full"
+              data-disabled="true"
+            >
+              Request Info
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ else }}
+    <article class="flex flex-col items-start justify-start py-6 relative xl:flex-row w-full">
+      <section id="content" class="flex flex-col items-start justify-start lg:mr-8 pb-4 w-full">
+        {{ with .Params.topCities }}
+          {{ $topCitiesData := . }}
+          <h2>{{ $.Params.topCitiesTitle }}</h2>
+          <ul class="flex flex-col items-start justify-start list-none mt-4 mx-0 p-0 w-full">
+            {{ range $topCitiesData }}
+              {{ with $.Site.GetPage . }}
+                <li class="flex items-center justify-start my-2 w-full">
+                  <a class="focus:text-primary font-bold hover:text-primary no-underline text-foreground text-lg" href="{{ .Permalink }}">{{ .Title }}</a>
+                </li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        {{ end }}
+        {{ .Content }}
+      </section>
+      <section id="related" class="flex flex-wrap items-start justify-start my-4 xl:max-w-min-content xl:sticky xl:top-0 w-full" data-nosnippet>
+        {{ with .Params.relatedArticles }}
+          {{ $articlesData := . }}
+  
+          <h2 class="font-serif pb-4 text-4xl">Related Articles</h2>
+          <ul
+            class="gap-6 grid md:gap-x-6 md:gap-y-8 list-none mx-0 my-4 p-0 w-full"
+          >
+            {{ if hugo.Environment | eq "production" }}
+            {{ range $articlesData }}
+              {{ with $.Site.GetPage (printf "%s" .) }}
+                {{ partial "main/related.html" . }}
+              {{ end }}
+            {{ end }}
+            {{ end }}
+          </ul>
+        {{ end }}
+        {{ with .Params.relatedCareers }}
+          {{ $careersData := . }}
+  
+          <h2 class="font-serif pb-4 text-4xl">Related Careers</h2>
+          <ul
+            class="gap-6 grid md:gap-x-6 md:gap-y-8 list-none mx-0 my-4 p-0 w-full"
+          >
+            {{ if hugo.Environment | eq "production" }}
+            {{ range $careersData }}
+              {{ with $.Site.GetPage . }}
+                {{ partial "main/related.html" . }}
+              {{ end }}
+            {{ end }}
+            {{ end }}
+          </ul>
+        {{ end }}
+        {{ $nearYou := $.Site.GetPage "section" "near-you" }}
+        <h2 class="font-serif pb-4 text-4xl w-full">{{ $nearYou.Title }}</h2>
+        <a href='{{ $nearYou.Permalink }}' class="focus:no-underline hover:no-underline no-underline">
+          {{ partial "lib/img.html" (dict "src" $nearYou.Params.image "alt" "" "size" 250 "picClass" "flex h-full items-center justify-center max-h-full m-0 overflow-hidden rounded-lg" "imgClass" "object-center object-cover rounded-lg w-full" "hidden" true) }}
+        </a>
+      </section>
+    </article>
+  {{ end }}
+{{ end }}
+{{ define "scripts" }}
+  {{ $opts := dict "minified" true "noComments" true }}
+  {{- $states := resources.Get "js/states.js" | babel $opts -}}
+  <script defer src="{{ $states.Permalink }}"></script>
+{{ end }}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html
+  lang="{{ $.Site.Language | default "en-US" }}"
+  data-type="{{ .Type }}"
+  data-kind="{{ .Kind }}"
+>
+  {{ block "head" . }}
+    <head>
+      {{ if eq .Params.noCrawl true }}
+      <meta name="robots" content="noindex, nofollow">
+      {{ end }}
+      <base href="{{ .Permalink }}" />
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      {{ hugo.Generator }}
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta
+        name="viewport"
+        content="width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,viewport-fit=cover"
+      />
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="robots" content="max-image-preview:large">
+      {{ if eq .Section "careers" }}{{ with .Params.image }}
+    <meta property="og:image" content="{{ . }}" />
+     {{ else }}{{ end }}{{ else }}{{ end }}
+             {{ if eq .Section "featured-content" }}{{ with .Params.image }}
+    <meta property="og:image" content="{{ . }}" />
+     {{ else }}{{ end }}{{ else }}{{ end }}
+             {{ if eq .Section "near-you" }}{{ with .Params.image }}
+    <meta property="og:image" content="{{ . }}" />
+     {{ else }}{{ end }}{{ else }}{{ end }}
+      {{ if eq .Section "schools" }}{{ with .Params.image }}
+    <meta property="og:image" content="{{ . }}" />
+     {{ else }}{{ end }}{{ else }}{{ end }}
+      <title>
+        {{ if .IsHome }}
+          {{ .Site.Title }}
+        {{ else }}
+             {{.Params.metaTitle}}
+        {{ end }}
+
+     
+      </title>
+      <link rel="canonical" href="{{ .Permalink }}" />
+      {{ if hugo.Environment | eq "production" }}
+        {{ partial "head/analytics.html" . }}
+      {{ end }}
+      {{ partial "head/opengraph.html" . }}
+      {{ partial "head/favicons.html" . }}
+      {{ partial "head/fonts.html" . }}
+      {{ partial "head/stylesheet.html" . }}
+      {{ partial "head/fonts-loading.html" . }}
+
+
+      <!-- Preload Sprites -->
+      <link rel="preload" href="{{ "/svg/symbols.svg" | relURL }}" as="fetch" />
+    </head>
+  {{ end }}
+
+
+  <body>
+    {{ partial "main/header.html" . }}
+
+
+    <main class="auto-rows-min grid relative w-full">
+      <div
+        class="col-span-3 flex flex-col items-center justify-start relative w-full"
+      >
+        {{ block "hero" . }}{{ end }}
+      </div>
+      <div
+        class="col-start-2 flex flex-col items-start justify-start relative row-start-2 w-full"
+      >
+        {{ block "main" . }}{{ end }}
+      </div>
+    </main>
+
+    {{ partial "main/footer.html" . }}
+    {{ partial "lib/scrollToTop.html" . }}
+
+    {{ if hugo.Environment | eq "production" }}
+      {{ partial "lib/sw.html" . }}
+    {{ end }}
+
+    {{ partial "main/scripts.html" . }}
+    {{ block "scripts" . }}{{ end }}
+  </body>
+</html>

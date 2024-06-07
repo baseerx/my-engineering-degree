@@ -1,0 +1,24 @@
+{{ $topography := resources.Get "/img/topography.svg" }}
+
+<section
+  id="career_now_section"
+  class="bg-repeat bg-foreground py-5 mb-5 w-full"
+  style="background-image: url({{ $topography.Permalink }});"
+>
+<link rel="stylesheet" href="https://edu-wizard-flow-widget.s3.us-east-1.amazonaws.com/main/index.css">								
+<div class="wzflow-widget" >								
+<wizard-flow-search								
+flow-type="full"								
+header-bg-color="#16345a"								
+header-text-color="light"								
+:settings="{ btnBgColorStyle: '#d58325' }"								
+body-bg-color="#fbfbfb"								
+data-csna="yJEel"								
+data-csnp="FoSSY"								
+:is-affiliate="true"								
+></wizard-flow-search>								
+</div>				
+<script type="module" crossorigin="anonymous" src="https://edu-wizard-flow-widget.s3.us-east-1.amazonaws.com/main/index.js"></script>								
+
+</section>
+

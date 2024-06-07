@@ -1,0 +1,100 @@
+{
+  "name": "top-trade-schools",
+  "version": "1.0.0",
+  "description": "A portal that helps people find programs and schools near them.",
+  "scripts": {
+    "build": "hugo --debug -e local --gc --log --minify -v --verboseLog",
+    "build:prod": "run-p clean partytown tw && npm run scripts && hugo -e production --gc --minify --ignoreCache",
+    "clean": "rm -rf public resources",
+    "clean:node": "rm -rf node_modules",
+    "content-cleanup": "esno --no-cache scripts/content-cleanup.ts",
+    "content-images": "esno --no-cache scripts/content-images.ts",
+    "format": "prettier --write \"assets/**/*.{ts,js,css,scss}\"",
+    "icon-images": "esno --no-cache scripts/icon-images.ts",
+    "lint": "eslint --fix --no-error-on-unmatched-pattern \"assets/**/*.{ts,js}\"",
+    "page-cleanup": "esno --no-cache scripts/page-cleanup.ts",
+    "partytown": "partytown copylib static/~partytown",
+    "prepare": "husky install",
+    "redirects": "esno --no-cache scripts/redirects.ts",
+    "scripts": "run-p content-cleanup content-images icon-images redirects && npm run page-cleanup",
+    "serve": "serve public",
+    "start": "run-p partytown && npm run scripts && concurrently -n \"DEV,TW\" -c \"#ff4088,#38bdf8\" \"hugo --debug --disableFastRender --gc --log --minify serve\" \"npm run tw -- --watch\"",
+    "tw": "tailwindcss --no-autoprefixer -i ./assets/css/tailwind.css -o ./assets/css/tw.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChalantVentures/top-trade-schools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChalantVentures/top-trade-schools/issues"
+  },
+  "homepage": "https://github.com/ChalantVentures/top-trade-schools#readme",
+  "dependencies": {
+    "@builder.io/partytown": "^0.7.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.0",
+    "@babel/eslint-parser": "^7.18.9",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@babel/preset-env": "^7.19.0",
+    "@babel/register": "^7.18.9",
+    "@types/glob": "^8.0.0",
+    "babel-loader": "^8.2.5",
+    "browserslist": "^4.21.3",
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.1.13",
+    "dotenv": "^16.0.3",
+    "esbuild": "^0.15.7",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "esno": "^0.16.3",
+    "glob": "^8.0.3",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^10.0.0",
+    "postcss-preset-env": "^7.8.1",
+    "prettier": "^2.7.1",
+    "prettier-plugin-go-template": "^0.0.13",
+    "replace-in-file": "^6.3.5",
+    "serve": "^14.0.1",
+    "svg-sprite": "^2.0.0",
+    "svgo": "^2.8.0",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.8.3",
+    "vinyl": "^2.2.1"
+  },
+  "browserslist": {
+    "production": [
+      ">3%",
+      "not dead",
+      "defaults",
+      "safari >= 12.4",
+      "ios >= 12.4",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.+(ts|css|scss)": [
+      "npm run format"
+    ],
+    "*.ts": [
+      "npm run lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

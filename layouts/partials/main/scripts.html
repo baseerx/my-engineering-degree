@@ -1,0 +1,15 @@
+{{ $opts := dict "minified" true "noComments" true }}
+{{ $mobile := resources.Get "js/mobile.js" }}
+{{ $header := resources.Get "js/header.js" }}
+{{ $scrollToTop := resources.Get "js/scrollToTop.js" }}
+{{- $bundle := slice $mobile $header $scrollToTop | resources.Concat "js/bundle.js" | babel $opts -}}
+<script defer src="{{ $bundle.Permalink }}"></script>
+<script>function toggleVisibility(span) {
+        var extra = span.parentElement.querySelector(".contentSnipExtra");
+
+        if (extra) {
+            extra.classList.toggle("hidden");
+            span.textContent = extra.classList.contains("hidden") ? "Read more" : "Show less";
+        }
+    }
+</script>

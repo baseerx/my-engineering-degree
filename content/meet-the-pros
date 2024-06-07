@@ -1,0 +1,38 @@
+---
+_schema: default
+title: Meet the Pros
+iconTitle:
+description:
+metaTitle: Meet the Pros | Top Trade Schools
+metaDescription: >-
+  TopTradeSchools.com provides valuable insight and information on careers
+  and education opportunities in Trades.
+image:
+filename:
+alt:
+icon:
+author:
+weight:
+highlight: false
+noCrawl: false
+relatedArticles:
+relatedCareers:
+headerLogo:
+headerIcon:
+footerLogo:
+footerIcon:
+menu:
+  header:
+    identifier:
+    weight:
+    params:
+      icon:
+        name:
+        fill:
+        size:
+---
+**You Have Questions About Trade Schools, We Have Professional Advice**
+
+{{< bio bioPic="https://res.cloudinary.com/damruetek/image/upload/v1701439882/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsX29mZmljZV80X2tpbmRfZG9jdG9yX3Bob3RvX2luX2hlcl80MHNfaXNvbGF0ZWRfb25fd2hpdF8xMjU4YWEzMS02YTkwLTQwZDctOTlhZC_zjypsh.webp" bioContent="<h3><strong>Lauren Jones, Health Adviser</strong></h3><p><em>Aus College</em></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>" >}}
+
+{{< bio bioPic="https://res.cloudinary.com/damruetek/image/upload/v1701439690/national-hero-homepage-1_kteun6.jpg" bioContent="<h3><strong>Joanne Smith, Monitor Technician program adviser</strong></h3><p><em>NY College</em></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>" >}}

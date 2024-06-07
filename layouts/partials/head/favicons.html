@@ -1,0 +1,32 @@
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}" />
+{{ $spt := resources.Get "icons/safari-pinned-tab.svg" }}
+<link rel="mask-icon" color="{{ .Site.Params.meta.theme }}" href="{{ $spt.Permalink }}" />
+{{ $icons := slice "16" "32" }}
+{{ $touchIcons := slice "120" "152" "167" "180" "256" "512" }}
+{{ $img := resources.Get "/icons/favicon.png" }}
+
+{{/*  create favicons  */}}
+{{ range $iconSize := $icons }}
+  {{ $iconResized := $img.Resize (print $iconSize "x icon") }}
+  {{/*  specify name  */}}
+  {{ $icon := slice $iconResized | resources.Concat (print "/icons/icon-" $iconSize "x" $iconSize ".png") }}
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="{{ $iconSize }}x{{ $iconSize }}"
+    href="{{ $icon.Permalink }}"
+  />
+{{ end }}
+{{/*  create apple touch icons  */}}
+{{ range $touchSize := $touchIcons }}
+  {{ $touchIconResized := $img.Resize (print $touchSize "x icon") }}
+  {{/*  specify name  */}}
+  {{ $touchIcon := slice $touchIconResized | resources.Concat (print "/icons/icon-" $touchSize "x" $touchSize ".png") }}
+  <link
+    rel="apple-touch-icon"
+    sizes="{{ $touchSize }}x{{ $touchSize }}"
+    href="{{ $touchIcon.Permalink }}"
+  />
+{{ end }}

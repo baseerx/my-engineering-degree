@@ -1,0 +1,213 @@
+{{ define "main" }}
+
+
+{{ end }}
+
+
+  
+  
+  {{ define "hero" }}
+  {{ $careers := ($.Site.GetPage "section" "careers").Pages.ByWeight }}
+  {{ $heroPattern := resources.Get "/img/hero-pattern.svg" }}
+  {{ $firstCareer := (index $careers 0).Title }}
+  {{/*  build data array  */}}
+  {{ $var := newScratch }}
+  {{ $var.Delete "careersData" }}
+  {{ range $careers }}
+    {{ $link := print .RelPermalink "career-overview/" }}
+    {{ $title := .Title }}
+    {{ $icon := cond (ne .Params.icon nil) .Params.icon nil }}
+
+    {{ range .Pages }}
+      {{ $isOverview := .Title | findRE "Career Overview" }}
+      {{/*  get description from career overview pages  */}}
+      {{ if ne $isOverview nil }}
+        {{ $var.Add "careersData" (slice (dict "name" $title "link" $link "icon" $icon "description" .Params.description))}}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $careersData := $var.Get "careersData" }}
+  
+  <style>
+.largerFont	{font-size: 3.875rem;
+    line-height: 5.25rem;
+}
+</style>
+
+
+  <div class="container py-5 mt-5">
+    <h1 class="display-1 fw-bold text-center largerFont font-serif">Sorry!</h1>
+    <h1 class="display-6 text-center mb-5 font-serif">This page doesn't exist!</h1>
+    <div class="row">
+        <div class="col-6 offset-3">
+    <hr />
+</div>
+</div>
+    <h2 class="display-6 text-center mb-5 mt-5 font-serif">Maybe something below will interest you?</h1>
+
+  </div>
+
+  <section
+    id="hero"
+    class="auto-rows-min grid items-center mb-0 mx-auto pb-0 pt-4 px-0 relative sm:pt-8 w-full"
+    data-type="hero"
+    data-iconselector="true"
+    data-home="true"
+    data-nosnippet
+  >
+
+    {{ partial "lib/icon-selector.html" (dict "data" $careersData "firstFilter" $firstCareer) }}
+  </section>
+  <section
+    id="careers"
+    class="bg-center bg-cover bg-no-repeat bg-foreground auto-rows-min grid items-center m-0 p-0 sm:py-8 w-full"
+    style="background-image: url({{ $heroPattern.Permalink }});"
+    data-type="highlight"
+  >
+    <div
+      class="bg-white col-start-2 duration-300 ease-in-out flex flex-col h-auto items-start justify-start min-h-56 overflow-hidden p-4 relative rounded row-start-2 shadow-lg transition-opacity w-full"
+      data-type="highlightinner"
+      data-active="true"
+    >
+      {{ range $careersData }}
+        {{ $active := cond (eq .name $firstCareer) "true" "false" }}
+        {{ $visibility := cond (eq .name $firstCareer) "opacity-1" "opacity-0" }}
+        <div
+          class="duration-300 ease-in-out flex flex-col items-start justify-start {{ $visibility }} w-full"
+          data-type="highlightitem"
+          data-section="{{ .icon }}"
+          data-active="{{ $active }}"
+        >
+          <h2 class="font-serif mb-2 text-2xl">{{ .name }}</h2>
+          <p>
+            {{ .description }}
+          </p>
+          <a
+            class="bg-primary border border-primary border-solid duration-300 ease-in-out flex focus:no-underline focus:text-background hover:no-underline hover:text-background items-center justify-center m-0 no-underline outline-none px-4 py-2 mt-4 text-background transition-colors visited:text-background w-full"
+            href="{{ .link | absURL }}"
+            data-type="highlightlink"
+          >
+            {{ $.Site.Data.content.home.hero.buttons.first }}
+          </a>
+          <a
+            class="bg-background border border-primary border-solid duration-300 ease-in-out flex focus:no-underline focus:text-primary hover:no-underline hover:text-primary items-center justify-center m-0 no-underline outline-none px-4 py-2 mt-4 text-primary transition-colors visited:text-primary w-full"
+            href='{{ "programs" | absURL }}/'
+            data-type="highlightlink"
+          >
+            {{ $.Site.Data.content.home.hero.buttons.second }}
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+
+
+
+
+ {{ $fc := $.Site.GetPage "section" "featured-content" }}
+  {{ $fcTag := $fc.Title | replaceRE "\\s" "-" | lower }}
+  <section
+    id="{{ $fcTag }}"
+    class="flex flex-col items-center justify-start py-8 w-full container"
+   
+  >
+    <h2 class="font-serif mr-auto pb-4 text-4xl">
+      {{ .Site.Data.content.home.content.featuredContent.heading }}
+    </h2>
+    {{ with .Site.Data.content.home.content.featuredContent.copy }}
+      <p class="mr-auto pb-6 text-xl">{{ . }}</p>
+    {{ end }}
+    <ul
+      class="gap-6 grid grid-cols-1 md:grid-cols-2 md:gap-x-6 md:gap-y-8 list-none mx-0 my-4 p-0 w-full"
+    >
+      {{ range $i, $data := (first 5 ($fc.Pages.ByWeight.ByParam "highlight").Reverse) }}
+        {{ $perma := $data.Permalink }}
+        {{ $alt := cond (ne $data.Params.alt nil) $data.Params.alt "" }}
+
+        {{ if eq $i 0 }}
+          <li
+            class="md:col-span-2 md:h-full md:max-h-72 md:p-0 pb-4 overflow-hidden rounded-lg row-start-1 w-full"
+            data-highlight="{{ $data.Params.highlight }}"
+          >
+            <article
+              class="flex flex-col items-start justify-start md:flex-row md:h-full w-full"
+            >
+              {{ with $data.Params.image }}
+                <a
+                  href="{{ $perma }}"
+                  class="focus:no-underline hover:no-underline no-underline"
+                >
+                  {{ partial "lib/img.html" (dict "src" . "alt" $data.Params.alt "size" 708 "picClass" "flex items-center justify-center max-h-80 md:m-0 md:max-h-72 mb-3 overflow-hidden rounded-lg w-full" "imgClass" "object-center object-cover w-full" "fill" true) }}
+                </a>
+              {{ end }}
+              <div
+                class="flex flex-col h-full items-start justify-start md:pl-5 w-full"
+              >
+                <h3 class="pb-4 text-4xl">
+                  <a
+                    href="{{ $perma }}"
+                    class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground"
+                  >
+                    {{ $data.Title }}
+                  </a>
+                </h3>
+                <p class="pb-4 text-2xl">{{ $data.Params.description }}</p>
+                <p class="m-0 max-h-40 overflow-hidden p-0">{{ $data.Summary }}</p>
+                <p class="font-semibold mt-auto pt-4 text-xl text-primary">
+                  {{ $data.Params.author }}
+                </p>
+              </div>
+            </article>
+          </li>
+        {{ else }}
+          <li
+            class="h-full overflow-hidden p-0 rounded-lg w-full"
+            data-highlight="{{ $data.Params.highlight }}"
+          >
+            <article
+              class="flex h-full items-start justify-start p-0 w-full"
+            >
+            {{ with $data.Params.image }}
+              <a
+                href="{{ $perma }}"
+                class="focus:no-underline hover:no-underline no-underline"
+              >
+                {{ partial "lib/img.html" (dict "src" . "alt" $alt "size" 400 "picClass" "flex h-full items-center justify-center max-h-full m-0 overflow-hidden rounded-lg" "imgClass" "object-center object-cover rounded-lg w-full") }}
+              </a>
+            {{ end }}
+              <div
+                class="flex flex-col h-full items-start justify-start min-w-48 pl-4 w-full"
+              >
+                <h3>
+                  <a
+                    href="{{$perma }}"
+                    class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground"
+                  >
+                    {{ $data.Title }}
+                  </a>
+                </h3>
+                <p class="m-0 max-h-18 overflow-hidden p-0">
+                  {{ $data.Params.description }}
+                </p>
+                <p class="font-semibold mt-auto pt-3 text-primary">
+                  {{ $data.Params.author }}
+                </p>
+              </div>
+            </article>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </section>
+
+{{ end }}
+
+
+{{ define "scripts" }}
+  {{ $opts := dict "minified" true "noComments" true }}
+  {{- $hero := resources.Get "js/hero.js" | babel $opts -}}
+  <script defer src="{{ $hero.Permalink }}"></script>
+{{ end }}
+
+

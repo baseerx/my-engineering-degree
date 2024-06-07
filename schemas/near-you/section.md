@@ -1,0 +1,30 @@
+---
+title:
+altTitle:
+description:
+metaTitle:
+metaDescription:
+image:
+filename:
+alt:
+author:
+weight:
+noCrawl:
+highlight:
+selectTitle:
+listTitle:
+topCitiesTitle:
+topCities:
+relatedArticles:
+relatedCareers:
+sliderPages:
+menu:
+  identifier:
+  weight:
+  menu:
+  params:
+    icon:
+      name:
+      fill:
+      size:
+---

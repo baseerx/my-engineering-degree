@@ -1,0 +1,394 @@
+{{ define "hero" }}
+  {{ $findSection := .CurrentSection.RelPermalink | replaceRE "/careers/([a-z-]+)/" "$1" }}
+  {{ $section := ($.Site.GetPage "section" (print "careers/" $findSection)).Pages }}
+
+  {{/*  build data array  */}}
+  {{ $var := newScratch }}
+  {{ $var.Delete "iconData" }}
+  {{ with .Params.sliderPages }}
+  {{ $sliderData := . }}
+    {{ range $sliderData }}
+      {{ with $.Site.GetPage . }}
+        {{ $parentTitle := cond (ne .Params.selectTitle nil) .Params.selectTitle .Title }}
+        {{ $title := .Title | replaceRE $parentTitle "" | replaceRE "\\s?[aA]\\s?$" "" }}
+        {{ $iconPath := replace .Params.icon "/assets/img/" "" }}
+        {{ $pageIcon := cond (ne $iconPath "") $iconPath nil }}
+        {{ $var.Add "iconData" (slice (dict "name" $title "relLink" .RelPermalink "iconImg" $pageIcon))}}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+
+  <section
+    id="hero"
+    class="auto-rows-min grid items-center mb-0 mt-5 mx-auto pb-0 pt-8 px-0 relative w-full"
+    data-type="hero"
+    data-iconselector="true"
+    data-home="false"
+    data-nosnippet
+  >
+    <h1
+      class="col-start-2 row-start-1 md:text-6xl mb-6 mx-auto text-4xl text-center w-full"
+      style="max-width: 100%;"
+      data-type="herolead"
+    >
+      {{ .Title }}
+    </h1>
+    {{/*  {{ if .Params.topBannerFlag }}  */}}
+            {{ partial "main/funnel-widget.html" . }}
+    {{/*  {{ end }}  */}}
+
+  </section>
+
+{{ end }}
+
+
+{{ define "main" }}
+      
+  <div class="container py-5 mt-0">
+  <div class="grid grid-cols-12 gap-4 mb-5">
+    <!-- Offset 3 Columns (Empty Grid Cells) -->
+    <div class="col-span-0 md:col-span-3"></div>
+
+    <!-- Main Content Area (6 Columns) -->
+    <div class="col-span-12 md:col-span-6 bg-white p-5">
+      {{ .Params.Intro }}
+    </div>
+   
+</div>
+
+<div class="mx-auto mt-5 statesContent">
+{{ .Content }}
+</div>
+
+<!-- ONE ITEM -->
+
+
+{{ $stateName := .File.BaseFileName }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+
+
+<!-- ONE ITEM END-->
+
+
+<div class="container mx-auto mt-5">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+
+<!-- ONE ITEM -->
+{{ $trade := "auto-mechanic" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become an {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+
+<!-- ONE ITEM -->
+{{ $trade := "aircraft-mechanic" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become an {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+<!-- ONE ITEM -->
+{{ $trade := "carpenter" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+
+<!-- ONE ITEM -->
+{{ $trade := "cnc-machinist" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+<!-- ONE ITEM -->
+{{ $trade := "electrician" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become an {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+
+<!-- ONE ITEM -->
+{{ $trade := "home-and-building-inspector" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+      
+
+<!-- ONE ITEM -->
+{{ $trade := "hvac" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} technician in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+<!-- ONE ITEM -->
+{{ $trade := "masonry-worker" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+<!-- ONE ITEM -->
+{{ $trade := "plumber" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+<!-- ONE ITEM -->
+{{ $trade := "solar-technician" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+<!-- ONE ITEM -->
+{{ $trade := "truck-driver" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+<!-- ONE ITEM -->
+{{ $trade := "welder" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+
+
+<!-- ONE ITEM -->
+{{ $trade := "wind-turbine-technician" }}
+{{ $section := printf "near-you/%s" $trade }}
+{{ $stateName := .File.BaseFileName }}
+{{ $fullPath := printf "%s/%s" $section $stateName }}
+{{ $formattedTitle := replace (title $trade) "-" " " }}
+{{ $formattedState := replace (title $stateName) "-" " " }}
+{{ with .Site.GetPage $fullPath }}
+<div class="my-1 p-5 bg-gray-100 rounded-md">
+  <h2 class="text-2xl font-bold"><a href="/{{ $fullPath }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">How to become a {{ $formattedTitle }} in {{ $formattedState }}</a></h2>
+  {{ with .Pages }}
+    <ul>
+      {{ range . }}
+        {{ $permalink := cond (eq .Name "_index") $fullPath .Permalink }}
+        <li><a href="{{ $permalink }}" class="focus:decoration-primary focus:underline hover:decoration-primary hover:underline no-underline text-foreground">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>
+{{ end }}
+<!-- ONE ITEM END-->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ {{ partial "main/usa-map.html" . }}
+
+
+
+</div>
+   
+{{ end }}
+
+
+{{ define "scripts" }}
+  {{ $opts := dict "minified" true "noComments" true }}
+{{ end }}
+
+

@@ -1,0 +1,50 @@
+{{ define "hero" }}
+  <section
+    id="hero"
+    class="auto-rows-min grid items-center mb-0 mt-5 mx-auto pb-0 pt-8 px-0 relative w-full"
+    data-type="hero"
+    data-nosnippet
+  >
+    <h1
+      class="col-start-2 row-start-1 md:text-6xl mb-6 mx-auto text-4xl text-center w-full"
+      style="max-width: 100%;"
+      data-type="herolead"
+    >
+      {{ .Title }}
+    </h1>
+  </section>
+{{ end }}
+{{ define "main" }}
+{{ $nearYou := .Site.GetPage "section" "near-you" }}
+<section class="flex flex-col items-start justify-start py-6 relative w-full" data-type="schools">
+  <ul class="auto-rows-auto gap-3 grid list-none m-0 p-0 w-full">
+    {{ range $i, $item := $nearYou.Pages.ByWeight.Reverse }}
+    {{ $delay := mul $i 50 }}
+    <li
+      class="school-item border border-l-8 border-primary border-solid flex flex-col items-start justify-start my-3 opacity-0 p-3 relative w-full"
+      style="animation-delay: {{ $delay }}ms;"
+    >
+      <span
+        class="absolute border-0 border-r-8 border-r-transparent border-solid border-t-8 border-t-primary left-0 top-0"
+        aria-hidden="true"
+      ></span>
+      <h2 class="flex flex-col items-start justify-start max-w-88 w-full">
+        <a href="{{ $item.Permalink }}" class="focus:no-underline hover:no-underline no-underline text-foreground w-full">
+          {{ $item.Params.listTitle }}
+        </a>
+      </h2>
+      <ul class="flex flex-col items-start justify-start list-none m-0 p-0 w-full">
+      {{ range $i, $item := .Pages.ByWeight }}
+        {{ $label := cond (ne .Params.selectTitle nil) .Params.selectTitle .Title }}
+        <li class="flex items-center justify-start mx-0 my-1 px-0 py-1 w-full">
+          <a href="{{ .RelPermalink }}" class="focus:no-underline hover:no-underline no-underline text-foreground w-full">
+            {{ $label }}
+          </a>
+        </li>
+      {{ end }}
+      </ul>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

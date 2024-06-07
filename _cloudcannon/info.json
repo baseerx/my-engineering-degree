@@ -1,0 +1,2564 @@
+{
+	"paths": {
+		"uploads": "assets/img",
+		"dam_uploads": "raw"
+	},
+	"_inputs": {
+		"title": {
+			"type": "text",
+			"comment": "Title of the page"
+		},
+		"description": {
+			"type": "text",
+			"comment": "Description of the page"
+		},
+		"metaTitle": {
+			"type": "text",
+			"comment": "Meta title of the page"
+		},
+		"metaDescription": {
+			"type": "text",
+			"comment": "Meta description of the page"
+		},
+		"author": {
+			"type": "text",
+			"comment": "Author of the page"
+		},
+		"image": {
+			"type": "image",
+			"comment": "Image at page top"
+		},
+		"icon": {
+			"comment": "Icon for career slider",
+			"type": "file",
+			"options": {
+				"uploads_dir": "assets/img/icons",
+				"accepts_mime_types": [
+					"image/svg+xml"
+				],
+				"mime_type": "image/svg+xml"
+			}
+		},
+		"filename": {
+			"type": "text",
+			"comment": "Image filename"
+		},
+		"alt": {
+			"type": "text",
+			"comment": "Image alt text"
+		},
+		"weight": {
+			"type": "number",
+			"comment": "Hierarchy of the page"
+		},
+		"highlight": {
+			"type": "switch",
+			"comment": "Should the page stand out above the rest"
+		},
+		"noCrawl": {
+			"type": "switch",
+			"comment": "Should this page be ommitted from crawlers"
+		},
+		"selectTitle": {
+			"type": "text",
+			"comment": "Label used on dropdown selection"
+		},
+		"topCitiesTitle": {
+			"type": "text",
+			"comment": "Heading above list of Top Cities"
+		},
+		"topCities": {
+			"type": "array",
+			"comment": "List of top cities"
+		},
+		"topCities[*]": {
+			"type": "select",
+			"options": {
+				"values": "collections.near-you"
+			}
+		},
+		"relatedArticles": {
+			"type": "array",
+			"comment": "List of related articles"
+		},
+		"relatedArticles[*]": {
+			"type": "select",
+			"options": {
+				"values": "collections.featured-content"
+			}
+		},
+		"relatedCareers": {
+			"type": "array",
+			"comment": "List of related articles"
+		},
+		"relatedCareers[*]": {
+			"type": "select",
+			"options": {
+				"values": "collections.careers"
+			}
+		},
+		"sliderPages": {
+			"type": "array",
+			"comment": "List of pages on slider"
+		},
+		"sliderPages[*]": {
+			"type": "select",
+			"options": {
+				"values": "collections.near-you"
+			}
+		}
+	},
+	"menu": {
+		"type": "object",
+		"comment": "Navigation menu",
+		"_structures": {
+			"values": [
+				{
+					"label": "Header",
+					"value": {
+						"header": {
+							"identifier": {
+								"comment": "Identifier for use with 'parent'"
+							},
+							"parent": {
+								"comment": "Identifier of the parent section"
+							},
+							"weight": {
+								"comment": "Lower weight show first"
+							}
+						}
+					}
+				},
+				{
+					"label": "Footer",
+					"value": {
+						"header": {
+							"identifier": {
+								"comment": "Identifier for use with 'parent'"
+							},
+							"parent": {
+								"comment": "Identifier of the parent section"
+							},
+							"weight": {
+								"comment": "Lower weight show first"
+							}
+						}
+					}
+				}
+			]
+		}
+	},
+	"collections_config": {
+		"pages": {
+			"name": "Pages",
+			"description": "Main pages",
+			"icon": "pages",
+			"path": "content/",
+			"output": true,
+			"_enabled_editors": [
+				"content",
+				"data"
+			],
+			"add_options": [
+				{
+					"name": "Add a page",
+					"schema": "default"
+				}
+			],
+			"text_key": "title",
+			"subtext_key": "description",
+			"image_key": "image",
+			"schemas": {
+				"default": {
+					"path": "schemas/page.md"
+				}
+			}
+		},
+		"careers": {
+			"name": "Careers",
+			"description": "Career sections",
+			"icon": "work",
+			"path": "content/careers",
+			"output": true,
+			"_enabled_editors": [
+				"content",
+				"data"
+			],
+			"add_options": [
+				{
+					"name": "Add a section",
+					"schema": "section"
+				},
+				{
+					"name": "Add a page",
+					"schema": "page",
+					"icon": "article"
+				}
+			],
+			"schemas": {
+				"section": {
+					"name": "Career section",
+					"path": "schemas/career/section.md"
+				},
+				"page": {
+					"name": "Career page",
+					"path": "schemas/career/page.md"
+				}
+			}
+		},
+		"careerOverviews": {
+			"name": "Career Overview",
+			"description": "Career Overviews section",
+			"icon": "work",
+			"path": "content/careers",
+			"output": true,
+			"_enabled_editors": [
+				"content",
+				"data"
+			],
+			"filter": {
+				"base": "strict",
+				"include": [
+					"dental-assistant/career-overview.md",
+					"dental-hygienist/career-overview.md",
+					"emt/career-overview.md",
+					"medical-assistant/career-overview.md",
+					"medical-biller-coder/career-overview.md",
+					"nutritionist/career-overview.md",
+					"pharmacy-technician/career-overview.md",
+					"phlebotomist/career-overview.md",
+					"physical-therapist/career-overview.md",
+					"radiologic-technologist/career-overview.md",
+					"surgical-technologist/career-overview.md"
+				]
+			},
+			"add_options": [
+				{
+					"name": "Add a section",
+					"schema": "section"
+				},
+				{
+					"name": "Add a page",
+					"schema": "page",
+					"icon": "article"
+				}
+			],
+			"schemas": {
+				"section": {
+					"name": "Career section",
+					"path": "schemas/career/section.md"
+				},
+				"page": {
+					"name": "Career page",
+					"path": "schemas/career/page.md"
+				}
+			}
+		},
+		"featured-content": {
+			"name": "Featured Content",
+			"description": "Featured Content sections",
+			"icon": "article",
+			"path": "content/featured-content",
+			"output": true,
+			"_enabled_editors": [
+				"content",
+				"data"
+			],
+			"add_options": [
+				{
+					"name": "Add a section",
+					"schema": "section"
+				},
+				{
+					"name": "Add a page",
+					"schema": "page",
+					"icon": "article"
+				}
+			],
+			"schemas": {
+				"section": {
+					"name": "Featured Content section",
+					"path": "schemas/featured-content/section.md"
+				},
+				"page": {
+					"name": "Featured Content page",
+					"path": "schemas/featured-content/page.md"
+				}
+			}
+		},
+		"near-you": {
+			"name": "Schools Near You",
+			"description": "Schools Near You sections",
+			"icon": "article",
+			"path": "content/near-you",
+			"output": true,
+			"_enabled_editors": [
+				"content",
+				"data"
+			],
+			"add_options": [
+				{
+					"name": "Add a section",
+					"schema": "section"
+				},
+				{
+					"name": "Add a page",
+					"schema": "page",
+					"icon": "article"
+				}
+			],
+			"schemas": {
+				"section": {
+					"name": "Schools Near You section",
+					"path": "schemas/near-you/section.md"
+				},
+				"page": {
+					"name": "Schools Near You page",
+					"path": "schemas/near-you/page.md"
+				}
+			}
+		},
+		"config": {
+			"name": "Configuration",
+			"description": "Hugo configuration",
+			"icon": "settings",
+			"path": "config/",
+			"output": false,
+			"_enabled_editors": [
+				"data"
+			],
+			"disable_add": true,
+			"disable_add_folder": true,
+			"disable_file_actions": true
+		},
+		"data": {
+			"name": "Data",
+			"description": "Site copy and navs",
+			"icon": "settings",
+			"path": "data/",
+			"output": false,
+			"_enabled_editors": [
+				"data"
+			],
+			"disable_add": true,
+			"disable_add_folder": true,
+			"disable_file_actions": true
+		}
+	},
+	"time": "2023-05-08T17:27:29.100Z",
+	"cloudcannon": {
+		"name": "cloudcannon-reader",
+		"version": "1.1.2"
+	},
+	"version": "0.0.3",
+	"data": {},
+	"collections": {
+		"featured-content": [
+			{
+				"title": "Featured Content",
+				"copy": "Dolor Sit Amet",
+				"weight": 30,
+				"path": "content/featured-content/_index.md",
+				"collection": "featured-content",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Highest Paying Blue Collar Trade Jobs",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Highest Paying Blue Collar Jobs | Top Trade Schools",
+				"metaDescription": "Learn about the highest paying blue collar trade jobs. Explore top paying careers in this growing career space.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1680301471/highest-paying-blue-collar-trade-jobs.png",
+				"filename": null,
+				"alt": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-15-hvac-technician-scholarships.md",
+					"content/featured-content/understanding-trade-school-accreditation.md"
+				],
+				"relatedCareers": [
+					"content/careers/Electrician/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+				"collection": "featured-content",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How Much Do Trade Schools Cost? ",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How Much Do Trade Schools Cost?  | Top Trade Schools",
+				"metaDescription": "Learn about how much trade schools costs and how to judge the value of the different career programs.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1681953207/how_much_do_trade_schools_cost.png",
+				"filename": "how_much_do_trade_schools_cost",
+				"alt": "how much do trade schools cost",
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/top-15-hvac-technician-scholarships.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/featured-content/how-much-do-trade-schools-cost.md",
+				"collection": "featured-content",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top HVAC Technician Scholarships",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Top 15 HVAC Technician Scholarships | Allied Health Career",
+				"metaDescription": "Explore HVAC Technician scholarships providing up to $10,000 in financial aid for prospective students. ",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1680294669/top-15-hvac-technician-scholarships.png",
+				"filename": "top-15-hvac-technician-scholarships",
+				"alt": "top 15 hvac technician scholoarships",
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/HVAC-Technician/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/featured-content/top-15-hvac-technician-scholarships.md",
+				"collection": "featured-content",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top States To Be An Auto Mechanic",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Top States To Be An Auto Mechanic | Top Trade Schools",
+				"metaDescription": "Learn about the highest paying states for Auto Mechanics. Explore the advantages and salaries of each state.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1682203203/top_states_for_auto_mechanics.png",
+				"filename": "top_states_for_auto_mechanics",
+				"alt": "top states to be an auto mechanic",
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/how-much-do-trade-schools-cost.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/Auto-Mechanic/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/featured-content/top-states-to-be-an-auto-mechanic.md",
+				"collection": "featured-content",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Understanding Trade School Accreditation",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Understanding Trade School Accreditation | Top Trade Schools",
+				"metaDescription": "Understand the different types of trade school accreditation. Learn the importance of accreditation.",
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1680124296/understanding%3Dtrade-school-accreditation.jpg",
+				"filename": "understanding-trade-school-accreditation",
+				"alt": "understanding trade school accreditation",
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-15-hvac-technician-scholarships.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/featured-content/understanding-trade-school-accreditation.md",
+				"collection": "featured-content",
+				"url": ""
+			}
+		],
+		"near-you": [
+			{
+				"_schema": "default",
+				"title": "Top Schools Near Me",
+				"altTitle": "Top Trade Schools Near You",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1679869593/top-schools-near-me.png",
+				"filename": null,
+				"alt": null,
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"selectTitle": null,
+				"listTitle": null,
+				"defaultSelection": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "near-you"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top HVAC Technician Schools Near Me",
+				"altTitle": "Top HVAC Technician Trade Schools Near Me",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": null,
+				"listTitle": "HVAC Technician Schools In",
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/hvac/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Top Carpentry Schools Near Me",
+				"altTitle": "Top Carpentry Trade Schools Near Me",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"selectTitle": null,
+				"listTitle": "Carpentry Schools In",
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "near-you"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/carpenter/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Top Electrician Schools Near Me",
+				"altTitle": "Top Electrician Trade Schools Near Me",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"selectTitle": null,
+				"listTitle": "Electrician Schools In",
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "near-you"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/electrician/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How To Become an HVAC Technician In Massachusetts ",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become An HVAC Technician In Massachusetts ",
+				"metaDescription": "Learn how to become an HVAC Technician In Massachusetts. Follow these steps and state requirements.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Massachusetts",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in Massachusetts",
+				"topCities": [
+					"content/near-you/hvac/massachusetts/hvac-technician-schools-in-boston.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/HVAC-Technician/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/hvac/massachusetts/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "HVAC Technician Schools In Boston",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "HVAC Technician  Schools In Boston, MA | Top Trade Schools",
+				"metaDescription": "Find top HVAC technician schools in Boston. Consider online, in-person, and hybrid education options.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Boston",
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-15-hvac-technician-scholarships.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/HVAC-Technician/career-overview.md",
+					"content/careers/carpenter/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/hvac/massachusetts/hvac-technician-schools-in-boston.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "How To Become A Carpenter In California",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become A Carpenter In California | Top Trade Schools",
+				"metaDescription": "Want to learn how to become a carpenter in California? Here are the steps and state-specific requirements.",
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"selectTitle": "California",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in California",
+				"topCities": [
+					"content/near-you/carpenter/california/los-angeles.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/understanding-trade-school-accreditation.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": [],
+				"menu": {
+					"footer": {
+						"identifier": "near-you"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/carpenter/california/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Carpentry Schools In Los Angeles",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Carpentry Schools In Los Angeles, CA | Top Trade Schools",
+				"metaDescription": "Find top carpentry schools in Los Angeles. Consider online, in-person, and hybrid education/training options.",
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"author": null,
+				"weight": 10,
+				"highlight": false,
+				"selectTitle": "Los Angeles",
+				"listTitle": null,
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/understanding-trade-school-accreditation.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "near-you"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/carpenter/california/los-angeles.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How To Become an Electrician in Texas",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become A Electrician In Texas | Top Trade Schools",
+				"metaDescription": "Want to learn how to become an electrician in Texas? Here are the steps and state-specific requirements.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Texas",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in Texas",
+				"topCities": [
+					"content/near-you/electrician/texas/electrician-schools-in-houston.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/top-15-hvac-technician-scholarships.md",
+					"content/featured-content/understanding-trade-school-accreditation.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/electrician/texas/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Electrician Schools in Houston",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Electrician Schools In Houston, TX | Top Trade Schools",
+				"metaDescription": "Find top electrician schools in Houston. Consider online, in-person, and hybrid education & training options.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Houston",
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-15-hvac-technician-scholarships.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/Electrician/career-overview.md",
+					"content/careers/carpenter/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/electrician/texas/electrician-schools-in-houston.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top Plumbing Schools Near Me",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": null,
+				"listTitle": "Pluming Schools In",
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/plumber/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top Welding Schools Near Me",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": null,
+				"listTitle": "Welding Schools In",
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/welder/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Top Auto Mechanic Schools Near Me",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": null,
+				"listTitle": "Auto Mechanic Schools In",
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/auto-mechanic/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How To Become A Plumber In Oregon",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become A Plumber In Oregon | Top Trade School",
+				"metaDescription": "Learn how to become a plumber in Oregon. Follow our step by step guide for state specific info. ",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Oregon",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in Oregon",
+				"topCities": [
+					"content/near-you/plumber/oregon/plumbing-schools-in-portland-or.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md"
+				],
+				"relatedCareers": [
+					"content/careers/Plumber/career-overview.md",
+					"content/careers/Welder/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/plumber/oregon/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Plumbing Schools In Portland",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Plumbing Schools In Portland, OR | Top Trade Schools",
+				"metaDescription": "Find top plumbing schools in Portland. Explore our options and evaluate their different programs. ",
+				"author": null,
+				"weight": null,
+				"noCrawl": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Portland",
+				"listTitle": null,
+				"topCitiesTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/how-much-do-trade-schools-cost.md"
+				],
+				"relatedCareers": [
+					"content/careers/Welder/career-overview.md",
+					"content/careers/Plumber/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/plumber/oregon/plumbing-schools-in-portland-or.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How To Become A Welder in Alaska",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become A Welder In Alaska | Top Trade Schools",
+				"metaDescription": "Interested in becoming a welder? Our extensive guide details the steps towards this growing trade career.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Alaska",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in Alaska",
+				"topCities": [
+					"content/near-you/welder/alaska/welding-schools-in-anchorage.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/how-much-do-trade-schools-cost.md"
+				],
+				"relatedCareers": [
+					"content/careers/Welder/career-overview.md",
+					"content/careers/Auto-Mechanic/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/welder/alaska/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Welding Schools In Anchorage ",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Welding Schools in Anchorage, Alaska | Top Trade Schools",
+				"metaDescription": "Find top welding programs in Anchorage. Consider in-person, and hybrid education/training options.",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Anchorage",
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md",
+					"content/featured-content/understanding-trade-school-accreditation.md"
+				],
+				"relatedCareers": [
+					"content/careers/Welder/career-overview.md",
+					"content/careers/Auto-Mechanic/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/welder/alaska/welding-schools-in-anchorage.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "How To Become A Auto Mechanic in Oklahoma",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "How To Become A Auto Mechanic In Oklahoma | Top Trade School",
+				"metaDescription": "Learn how to become a auto mechanic in Oklahoma. Follow our step by step guide for state specific info. ",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Oklahoma",
+				"listTitle": null,
+				"topCitiesTitle": "Top Career Schools in Oklahoma",
+				"topCities": [
+					"content/near-you/auto-mechanic/oklahoma/auto-mechanic-schools-in-oklahoma-city.md"
+				],
+				"relatedArticles": [
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md",
+					"content/featured-content/top-15-hvac-technician-scholarships.md"
+				],
+				"relatedCareers": [
+					"content/careers/Auto-Mechanic/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/auto-mechanic/oklahoma/_index.md",
+				"collection": "near-you",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Auto Mechanic Schools in Oklahoma City",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Auto Mechanic Schools in Oklahoma City, OK | Top Trade Schools",
+				"metaDescription": "Find top auto mechanic schools in Oklahoma City. Explore our options and evaluate their different programs. ",
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"selectTitle": "Oklahoma City",
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md",
+					"content/featured-content/how-much-do-trade-schools-cost.md"
+				],
+				"relatedCareers": [
+					"content/careers/Auto-Mechanic/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/near-you/auto-mechanic/oklahoma/auto-mechanic-schools-in-oklahoma-city.md",
+				"collection": "near-you",
+				"url": ""
+			}
+		],
+		"careers": [
+			{
+				"_schema": "page",
+				"title": "Auto Mechanic",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/auto-mechanic.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Auto-Mechanic/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Auto Mechanic Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Auto Mechanic Career Guide: Duties, Salaries & Education",
+				"metaDescription": "Interested in a career as a auto mechanic? Start with an overview of of this fast-growing career path.",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1682204953/auto-mechanic-career.png",
+				"filename": "auto-mechanic-career",
+				"alt": "auto mechanic career",
+				"icon": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md",
+					"content/featured-content/how-much-do-trade-schools-cost.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Auto-Mechanic/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Welder",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/welder.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Welder/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Welder Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Welder Career Guide: Duties, Salaries & Education",
+				"metaDescription": "Interested in a career as a welder? Start with an overview of of this fast-growing career path.",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1682809831/welder.png",
+				"filename": "welder-career",
+				"alt": "welder career",
+				"icon": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": [
+					null
+				],
+				"relatedArticles": [
+					"content/featured-content/how-much-do-trade-schools-cost.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/Electrician/career-overview.md",
+					"content/careers/Auto-Mechanic/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Welder/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Plumber",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/plumber.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Plumber/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Plumber Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Plumber Career Guide | Top Trade Schools",
+				"metaDescription": "Interested in a career as a plumber? Start with an overview of of this fast-growing career path.",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1682820153/plumber_career.png",
+				"filename": "plumbing_career",
+				"alt": "plumbing career",
+				"icon": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/top-states-to-be-an-auto-mechanic.md"
+				],
+				"relatedCareers": [
+					"content/careers/Welder/career-overview.md",
+					"content/careers/Auto-Mechanic/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Plumber/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Aircraft Mechanic",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": "/assets/img/icons/aircraft-mechanic.svg",
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"noCrawl": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCitiesTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Aircraft-Mechanic/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Aircraft Mechanic Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Aircraft Mechanic Career Guide | Top Trade Schools",
+				"metaDescription": "Understand what aircraft mechanics do. Explore salaries, responsibilities, and what to expect on the job. ",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1683069445/aircraft-mechanic-career-overview.png",
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"noCrawl": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCitiesTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md",
+					"content/featured-content/how-much-do-trade-schools-cost.md"
+				],
+				"relatedCareers": [
+					"content/careers/Auto-Mechanic/career-overview.md",
+					"content/careers/Plumber/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/Aircraft-Mechanic/aircraft-mechanic-career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Carpenter",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/carpenter.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/carpenter/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Carpenter Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Carpenter Career Guide | Top Trade Schools",
+				"metaDescription": "Understand what carpenters do. Learn how to become a carpenter. Explore salaries, job outlook, and training.",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1678660880/carpenter_career.jpg",
+				"filename": "carpenter-career",
+				"alt": "carpenter career",
+				"icon": null,
+				"noCrawl": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCitiesTitle": null,
+				"topCities": [],
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/Electrician/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": [],
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/carpenter/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Electrician",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/electrician.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/electrician/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "Electrician Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "Electrician Career Guide: Duties, Salaries, Job Outlook & Education",
+				"metaDescription": "Understand what electricians do. Learn how to become a electrician. Explore salaries, and job outlook. ",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1679872702/electrician_career_.png",
+				"filename": "electrician-career-overview",
+				"alt": "electrician career overview",
+				"icon": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": [],
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/top-15-hvac-technician-scholarships.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/HVAC-Technician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/electrician/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "HVAC Technician",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": "/assets/img/icons/hvac-technician.svg",
+				"noCrawl": true,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/hvac-technician/_index.md",
+				"collection": "careers",
+				"url": ""
+			},
+			{
+				"_schema": "page",
+				"title": "HVAC Technician Career Overview",
+				"altTitle": null,
+				"description": null,
+				"metaTitle": "HVAC Technician Career Overview | Top Trade Schools",
+				"metaDescription": "Interested in a career as an HVAC technician? Start with an overview of of this fast-growing career path.",
+				"image": "https://res.cloudinary.com/damruetek/image/upload/v1680198285/HVAC-Technician.jpg",
+				"filename": "hvac-technician-career-overview",
+				"alt": "hvac technician career overview",
+				"icon": null,
+				"selectTitle": null,
+				"listTitle": null,
+				"topCities": null,
+				"relatedArticles": [
+					"content/featured-content/understanding-trade-school-accreditation.md",
+					"content/featured-content/highest-paying-blue-collar-trade-jobs.md"
+				],
+				"relatedCareers": [
+					"content/careers/carpenter/career-overview.md",
+					"content/careers/Electrician/career-overview.md"
+				],
+				"sliderPages": null,
+				"menu": {
+					"header": {
+						"identifier": null,
+						"parent": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/careers/hvac-technician/career-overview.md",
+				"collection": "careers",
+				"url": ""
+			}
+		],
+		"careerOverviews": [],
+		"pages": [
+			{
+				"title": "Home",
+				"lead": "Take a step toward your new career",
+				"copy": "Featured Careers",
+				"path": "content/_index.md",
+				"collection": "pages",
+				"url": ""
+			},
+			{
+				"title": "About Us",
+				"menu": {
+					"footer": {
+						"identifier": "about-us"
+					}
+				},
+				"path": "content/about-us.md",
+				"collection": "pages",
+				"url": ""
+			},
+			{
+				"title": "Financial Aid",
+				"weight": 30,
+				"menu": {
+					"header": {
+						"identifier": "financial-aid",
+						"params": {
+							"icon": "fa-regular--money-bills"
+						}
+					}
+				},
+				"path": "content/financial-aid.md",
+				"collection": "pages",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Privacy Policy",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"selectTitle": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "privacy-policy"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/privacy-policy.md",
+				"collection": "pages",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Select programs that interest you below",
+				"altTitle": "Explore Programs",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"selectTitle": null,
+				"listTitle": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "programs"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/programs.md",
+				"collection": "pages",
+				"url": ""
+			},
+			{
+				"_schema": "default",
+				"title": "Terms of Service",
+				"description": null,
+				"metaTitle": null,
+				"metaDescription": null,
+				"image": null,
+				"filename": null,
+				"alt": null,
+				"icon": null,
+				"author": null,
+				"weight": null,
+				"highlight": false,
+				"selectTitle": null,
+				"listTitle": null,
+				"relatedArticles": null,
+				"relatedCareers": null,
+				"sliderPages": null,
+				"menu": {
+					"footer": {
+						"identifier": "terms-of-service"
+					},
+					"header": {
+						"identifier": null,
+						"weight": null,
+						"params": {
+							"icon": {
+								"name": null,
+								"fill": null,
+								"size": null
+							}
+						}
+					}
+				},
+				"path": "content/terms-of-service.md",
+				"collection": "pages",
+				"url": ""
+			}
+		],
+		"config": [
+			{
+				"canonifyURLs": true,
+				"enableRobotsTXT": false,
+				"languageCode": "en-us",
+				"summaryLength": 40,
+				"module": {
+					"mounts": [
+						{
+							"source": "assets/img",
+							"target": "assets/img"
+						}
+					]
+				},
+				"security": {
+					"enableInlineShortcodes": false,
+					"exec": {
+						"allow": [
+							"^dart-sass-embedded$",
+							"^go$",
+							"^npx$",
+							"^postcss$",
+							"^babel$"
+						]
+					}
+				},
+				"title": "Top Trade Schools",
+				"copyright": "TopTradeSchools.com by Chalant Ventures",
+				"params": {
+					"description": "Find educational programs and schools near you",
+					"author": {
+						"name": "Top Trade Schools",
+						"avatar": "/authors/ahc.svg"
+					},
+					"meta": {
+						"theme": "#d37f24"
+					}
+				},
+				"markup": {
+					"highlight": {
+						"lineNos": true,
+						"style": "monokailight",
+						"tabWidth": 2
+					}
+				},
+				"sitemap": {
+					"changefreq": "always",
+					"filename": "sitemap.xml",
+					"priority": 1
+				},
+				"path": "config/_default/config.yml",
+				"collection": "config",
+				"url": ""
+			},
+			{
+				"baseURL": "http://localhost:1313",
+				"buildDrafts": true,
+				"minify": {
+					"minifyOutput": false
+				},
+				"module": {
+					"mounts": [
+						{
+							"source": "assets",
+							"target": "assets"
+						},
+						{
+							"source": "static",
+							"target": "static"
+						},
+						{
+							"source": "static/svg/symbols.dev.svg",
+							"target": "static/svg/symbols.svg"
+						}
+					]
+				},
+				"path": "config/development/config.yml",
+				"collection": "config",
+				"url": ""
+			},
+			{
+				"baseURL": "https://toptradeschools.com",
+				"minify": {
+					"minifyOutput": true,
+					"tdewolff": {
+						"html": {
+							"keepQuotes": true,
+							"keepWhitespace": false
+						}
+					}
+				},
+				"module": {
+					"mounts": [
+						{
+							"source": "assets",
+							"target": "assets"
+						},
+						{
+							"source": "static",
+							"target": "static"
+						},
+						{
+							"source": "static/svg/symbols.prod.svg",
+							"target": "static/svg/symbols.svg"
+						}
+					]
+				},
+				"path": "config/production/config.yml",
+				"collection": "config",
+				"url": ""
+			}
+		],
+		"data": [
+			{
+				"home": {
+					"hero": {
+						"heading": "Take A Step Toward Your New Top Trade Schools",
+						"copy": "Featured Careers",
+						"buttons": {
+							"first": "Career Overview",
+							"second": "Explore Programs"
+						}
+					},
+					"content": {
+						"featuredContent": {
+							"heading": "Featured Content",
+							"copy": null
+						},
+						"careers": {
+							"heading": "Careers",
+							"copy": "Dolor Sit Amet"
+						}
+					}
+				},
+				"path": "data/content.yml",
+				"collection": "data",
+				"url": ""
+			},
+			{
+				"title": "Programs near you",
+				"labels": {
+					"specialization": "Specialization In",
+					"education": "Your Education Level",
+					"state": "State"
+				},
+				"specialization": [
+					{
+						"id": "Carpenter",
+						"label": "Carpenter"
+					}
+				],
+				"education": [
+					{
+						"id": "In High School / Some High School",
+						"label": "In High School / Some High School"
+					},
+					{
+						"id": "High School Diploma",
+						"label": "High School Diploma"
+					},
+					{
+						"id": "In College",
+						"label": "In College"
+					},
+					{
+						"id": "Associate's Degree",
+						"label": "Associate's Degree"
+					},
+					{
+						"id": "Bachelor's Degree",
+						"label": "Bachelor's Degree"
+					},
+					{
+						"id": "Master's Degree",
+						"label": "Master's Degree"
+					}
+				],
+				"state": [
+					{
+						"id": "Alabama",
+						"label": "Alabama"
+					},
+					{
+						"id": "Alaska",
+						"label": "Alaska "
+					},
+					{
+						"id": "Arizona",
+						"label": "Arizona"
+					},
+					{
+						"id": "Arkansas",
+						"label": "Arkansas"
+					},
+					{
+						"id": "California",
+						"label": "California"
+					},
+					{
+						"id": "Colorado",
+						"label": "Colorado"
+					},
+					{
+						"id": "Connecticut",
+						"label": "Connecticut"
+					},
+					{
+						"id": "Delaware",
+						"label": "Delaware"
+					},
+					{
+						"id": "Florida",
+						"label": "Florida"
+					},
+					{
+						"id": "Georgia",
+						"label": "Georgia"
+					},
+					{
+						"id": "Hawaii",
+						"label": "Hawaii"
+					},
+					{
+						"id": "Idaho",
+						"label": "Idaho"
+					},
+					{
+						"id": "Illinois",
+						"label": "Illinois"
+					},
+					{
+						"id": "Indiana",
+						"label": "Indiana"
+					},
+					{
+						"id": "Iowa",
+						"label": "Iowa"
+					},
+					{
+						"id": "Kansas",
+						"label": "Kansas"
+					},
+					{
+						"id": "Kentucky",
+						"label": "Kentucky"
+					},
+					{
+						"id": "Louisiana",
+						"label": "Louisiana"
+					},
+					{
+						"id": "Maine",
+						"label": "Maine"
+					},
+					{
+						"id": "Maryland",
+						"label": "Maryland"
+					},
+					{
+						"id": "Massachusetts",
+						"label": "Massachusetts"
+					},
+					{
+						"id": "Michigan",
+						"label": "Michigan"
+					},
+					{
+						"id": "Minnesota",
+						"label": "Minnesota"
+					},
+					{
+						"id": "Mississippi",
+						"label": "Mississippi"
+					},
+					{
+						"id": "Missouri",
+						"label": "Missouri"
+					},
+					{
+						"id": "Montana",
+						"label": "Montana"
+					},
+					{
+						"id": "Nebraska",
+						"label": "Nebraska"
+					},
+					{
+						"id": "Nevada",
+						"label": "Nevada"
+					},
+					{
+						"id": "New Hampshire",
+						"label": "New Hampshire"
+					},
+					{
+						"id": "New Jersey",
+						"label": "New Jersey"
+					},
+					{
+						"id": "New Mexico",
+						"label": "New Mexico"
+					},
+					{
+						"id": "New York",
+						"label": "New York"
+					},
+					{
+						"id": "North Carolina",
+						"label": "North Carolina"
+					},
+					{
+						"id": "North Dakota",
+						"label": "North Dakota"
+					},
+					{
+						"id": "Ohio",
+						"label": "Ohio"
+					},
+					{
+						"id": "Oklahoma",
+						"label": "Oklahoma"
+					},
+					{
+						"id": "Oregon",
+						"label": "Oregon"
+					},
+					{
+						"id": "Pennsylvania",
+						"label": "Pennsylvania"
+					},
+					{
+						"id": "Rhode Island",
+						"label": "Rhode Island"
+					},
+					{
+						"id": "South Carolina",
+						"label": "South Carolina"
+					},
+					{
+						"id": "South Dakota",
+						"label": "South Dakota"
+					},
+					{
+						"id": "Tennessee",
+						"label": "Tennessee"
+					},
+					{
+						"id": "Texas",
+						"label": "Texas"
+					},
+					{
+						"id": "Utah",
+						"label": "Utah"
+					},
+					{
+						"id": "Vermont",
+						"label": "Vermont"
+					},
+					{
+						"id": "Virginia",
+						"label": "Virginia"
+					},
+					{
+						"id": "Washington",
+						"label": "Washington"
+					},
+					{
+						"id": "West Virginia",
+						"label": "West Virginia"
+					},
+					{
+						"id": "Wisconsin",
+						"label": "Wisconsin"
+					},
+					{
+						"id": "Wyoming",
+						"label": "Wyoming"
+					}
+				],
+				"path": "data/funnel.yml",
+				"collection": "data",
+				"url": ""
+			},
+			{
+				"schools": [
+					{
+						"name": "Penn Foster",
+						"link": "https://lp.pennfoster.edu/ppc/online-courses"
+					},
+					{
+						"name": "Arizona State University",
+						"link": "https://asuonline.asu.edu"
+					},
+					{
+						"name": "Gran Canyon University",
+						"link": "https://explore.gcu.edu/general/"
+					},
+					{
+						"name": "MedCerts",
+						"link": "https://medcerts.com"
+					},
+					{
+						"name": "Purdue University",
+						"link": "https://onlinedegrees.purdue.edu/purdue-global/"
+					},
+					{
+						"name": "UEI College",
+						"link": "https://www.uei.edu"
+					}
+				],
+				"path": "data/nearYou.yml",
+				"collection": "data",
+				"url": ""
+			},
+			{
+				"schools": [
+					{
+						"name": "Penn Foster",
+						"link": "https://lp.pennfoster.edu/ppc/online-courses"
+					},
+					{
+						"name": "Arizona State University",
+						"link": "https://asuonline.asu.edu"
+					},
+					{
+						"name": "Gran Canyon University",
+						"link": "https://explore.gcu.edu/general/"
+					},
+					{
+						"name": "MedCerts",
+						"link": "https://medcerts.com"
+					},
+					{
+						"name": "Purdue University",
+						"link": "https://onlinedegrees.purdue.edu/purdue-global/"
+					},
+					{
+						"name": "UEI College",
+						"link": "https://www.uei.edu"
+					}
+				],
+				"path": "data/programs.yml",
+				"collection": "data",
+				"url": ""
+			},
+			{
+				"items": [
+					{
+						"iconImg": "california.png",
+						"name": "Top Schools In California",
+						"relLink": "/near-you/carpenter/california/"
+					},
+					{
+						"iconImg": "how-to-become.png",
+						"name": "How to Become A Medical Assistant",
+						"relLink": "/careers/medical-assistant/how-to-become/"
+					},
+					{
+						"iconImg": "certification.png",
+						"name": "Medical Assistant Certification",
+						"relLink": "/careers/medical-assistant/certification/"
+					},
+					{
+						"iconImg": "education-and-training.png",
+						"name": "Medical Assistant Education And Training",
+						"relLink": "/careers/medical-assistant/education-and-training/"
+					},
+					{
+						"iconImg": "salary-and-career-outlook.png",
+						"name": "Medical Assistant Salary And Career Outlook",
+						"relLink": "/careers/medical-assistant/salary-and-career-outlook/"
+					}
+				],
+				"path": "data/slider.yml",
+				"collection": "data",
+				"url": ""
+			}
+		]
+	}
+}

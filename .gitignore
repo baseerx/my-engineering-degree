@@ -1,0 +1,14 @@
+# Local
+DEV.md
+META.md
+
+# Hugo
+.hugo_build.lock
+resources
+public
+
+# Node
+node_modules/
+
+assets/css/tw.css
+static/~partytown

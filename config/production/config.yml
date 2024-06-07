@@ -1,0 +1,23 @@
+---
+baseURL: "https://toptradeschools.com"
+
+minify:
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepQuotes: true
+      keepWhitespace: false
+
+module:
+  mounts:
+    - source: assets
+      target: assets
+
+    - source: static
+      target: static
+
+    - source: static/svg/symbols.prod.svg
+      target: static/svg/symbols.svg
+      
+permalinks:
+  "states/*": "/:filename/"

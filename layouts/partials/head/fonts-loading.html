@@ -1,0 +1,39 @@
+<script>
+  /**
+   * Font loading via FontFace API to avoid FOUT.
+   * After US charset subset files load, load full Latin chartset files.
+   */
+  if ('fonts' in document) {
+    const fonts = [];
+
+    {{ range os.ReadDir "static/fonts" }}
+      {{ $master := .Name | findRE "(ttf)" }}
+    
+      {{ if ne $master nil }}
+        {{ $name := .Name | replaceRE "-.*" "" }}
+        {{ $woff := .Name | replaceRE "ttf" "woff" }}
+        {{ $woff2 := .Name | replaceRE "ttf" "woff2" }}
+        {{ $isBold := .Name | findRE "SemiBold" }}
+        {{ $isItalic := .Name | findRE "Italic" }}
+        {{ $style := cond (ne $isItalic nil) "italic" "normal" }}
+        {{ $weight := cond (ne $isBold nil) "600" "400" }}
+
+        fonts.push(
+          new FontFace(
+            '{{ $name }}',
+            'url(/fonts/{{ $woff2 }}) format("woff2"), url(/fonts/{{ $woff }}) format("woff")',
+            { style: '{{ $style }}', weight: '{{ $weight }}' }
+          )
+        );
+      {{ end }}
+    {{ end }}
+
+    const fontPromises = fonts.map(font => font.load());
+
+    Promise.all(fontPromises).then(fonts => {
+      fonts.forEach(font => {
+        document.fonts.add(font);
+      });
+    });
+  }
+</script>

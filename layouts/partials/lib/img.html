@@ -1,0 +1,75 @@
+{{/* Get image types */}}
+{{ $svg := .src | findRE "svg" }}
+{{ $gif := .src | findRE "gif" }}
+{{ $type := .src | replaceRE "(.*).(png|jpg|jpeg|svg|gif)" "$2" }}
+{{ $imgMain := .src | replaceRE "(.*).(png|jpg|jpeg|svg|gif)" "$1" }}
+
+{{/* Create filenames */}}
+{{ $img := print $imgMain "." $type }}
+
+{{/* Render attributes */}}
+{{ $isHidden := cond (ne .hidden nil) "true" "false" }}
+{{ $isSmall := cond (ne .small nil) "true" "false" }}
+{{ $maxWidth := cond (ne .small nil) "max-w-xxxxs" "max-w-xs" }}
+{{ $loading := cond (ne .loading nil) .loading "lazy" }}
+
+{{/* Is this a remote image? */}}
+{{ $isURL := .src | findRE "http" }}
+{{ $isRemote := cond (ne $isURL nil) true false }}
+
+{{/* Height variable */}}
+{{ $height := cond (ne .height nil) .height "" }}
+
+{{/* Render conditionally by file type */}}
+{{ if $isRemote }}
+  {{ partial "lib/remote-img.html" (dict "src" .src "alt" .alt "size" .size "height" $height "picClass" .picClass "imgClass" .imgClass "fill" .fill "loading" .loading) }}
+{{ else if or (eq (index $svg 0) "svg") (eq (index $gif 0) "gif") }}
+  {{ $vectorFilename := print "/img/" $img }}
+  {{ $vectorExists := fileExists (print "assets/" $vectorFilename) }}
+
+  {{ if $vectorExists }}
+    {{ $simple := resources.Get $vectorFilename }}
+
+    <img
+      src="{{ $simple.Permalink }}"
+      alt="{{ .alt }}"
+      class="{{ with .imgClass }}{{ . }}{{ else }} w-full{{ end }}"
+      width="{{ .size }}"
+      height="{{ $height }}"
+      style="max-width: {{ .size }}px;"
+      aria-hidden="{{ $isHidden }}"
+      loading="{{ $loading }}"
+      {{ if ne .tabindex nil }}tabindex="{{ .tabindex }}"{{ end }}
+      {{ with .active }}data-active="{{ . }}"{{ end }}
+    />
+  {{ end }}
+{{ else }}
+  {{ $rasterFilename := print "/img/" $img }}
+  {{ $rasterExists := fileExists (print "assets/" $rasterFilename) }}
+
+  {{ if $rasterExists }}
+    {{ $imgPrimary := resources.Get $rasterFilename }}
+
+    <picture
+      class="{{ with .picClass }}{{ . }}{{ else }}img-wrap flex items-center justify-center my-4 w-full{{ end }}"
+      {{ if .fill }}style="max-width: {{ .size }}px;"{{ end }}
+      {{ if ne .tabindex nil }}tabindex="{{ .tabindex }}"{{ end }}
+    >
+      {{ $webpPrimary := $imgPrimary.Resize (print .size "x webp drawing") }}
+      <source srcset="{{ $webpPrimary.Permalink }}" type="image/webp" />
+      {{ $imgResized := $imgPrimary.Resize (print .size "x jpeg") }}
+      <img
+        src="{{ $imgResized.Permalink }}"
+        alt="{{ .alt }}"
+        class="{{ with .imgClass }}{{ . }}{{ else }}{{ $maxWidth }} w-full{{ end }}"
+        width="{{ $imgResized.Width }}"
+        height="{{ $height }}"
+        style="max-width: {{ .size }}px;"
+        data-small="{{ $isSmall }}"
+        aria-hidden="{{ $isHidden }}"
+        loading="lazy"
+        {{ with .active }}data-active="{{ . }}"{{ end }}
+      />
+    </picture>
+  {{ end }}
+{{ end }}

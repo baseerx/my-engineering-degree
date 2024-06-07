@@ -1,0 +1,46 @@
+canonifyURLs: true
+enableRobotsTXT: false
+languageCode: en-us
+summaryLength: 40
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+module:
+  mounts:
+    - source: assets/img
+      target: assets/img
+security:
+  enableInlineShortcodes: false
+  exec:
+    allow:
+      - ^dart-sass-embedded$
+      - ^go$
+      - ^npx$
+      - ^postcss$
+      - ^babel$
+title: Top Trade Schools
+copyright: TopTradeSchools.com by Chalant Ventures
+params:
+  shortTitle: TTS
+  description: Find educational programs and schools near you
+  author:
+    name: Top Trade Schools
+    avatar: /authors/ahc.svg
+  meta:
+    theme: '#d37f24'
+  headerLogo: logo.svg
+  headerIcon: icon.svg
+  footerLogo: logo-light.svg
+  footerIcon: icon.svg
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    lineNos: true
+    style: monokailight
+    tabWidth: 2
+sitemap:
+  changefreq: always
+  filename: sitemap.xml
+  priority: 1

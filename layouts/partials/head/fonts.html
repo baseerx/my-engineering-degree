@@ -1,0 +1,13 @@
+{{ range os.ReadDir "static/fonts" }}
+  {{ $sub := .Name | findRE "(subset)" }}
+
+  {{ if ne $sub nil }}
+    <link
+      rel="preload"
+      href="/fonts/{{ .Name }}"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+  {{ end }}
+{{ end }}

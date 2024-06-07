@@ -1,0 +1,7 @@
+<div
+  class="note"
+  {{ with .Get "kind" }}data-kind="{{ . }}"{{ end }}
+>
+  {{ with .Get "title" }}<p class="title">{{ . }}</p>{{ end }}
+  <div class="inner">{{ .Inner | markdownify }}</div>
+</div>

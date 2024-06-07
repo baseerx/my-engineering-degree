@@ -1,0 +1,22 @@
+{{- range os.ReadDir "static/fonts" -}}
+  {{ $master := .Name | findRE "(ttf)" }}
+
+  {{ if ne $master nil }}
+    {{ $name := .Name | replaceRE "-.*" "" }}
+    {{ $woff :=  replace .Name ".ttf" "-subset.woff" }}
+    {{ $woff2 :=  replace .Name ".ttf" "-subset.woff2" }}
+    {{ $isBold := .Name | findRE "SemiBold" }}
+    {{ $isItalic := .Name | findRE "Italic" }}
+    {{ $style := cond (ne $isItalic nil) "italic" "normal" }}
+    {{ $weight := cond (ne $isBold nil) "600" "400" }}
+
+    @font-face {
+      font-family: {{ $name }};
+      src: url(/fonts/{{ $woff2 }}) format("woff2"),
+        url(/fonts/{{ $woff }}) format("woff");
+      font-weight: {{ $weight }};
+      font-style: {{ $style }};
+      font-display: swap;
+    }
+  {{ end }}
+{{- end -}}

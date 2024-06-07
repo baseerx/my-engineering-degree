@@ -1,0 +1,11 @@
+<script type='text/javascript' src='https://www.esyoh.com/clients/js/widget.js?ver=3.0.0' id='esyoh-widget-js'></script>
+<div class="esy_widget_container"></div>
+<script data-cfasync="false" type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {ESY.Widget({
+pc: '{{ .Get "course-code" }}',
+results: '{{ .Get "results" }}',
+domain_id: 'toptradeschools.com',
+type: 'listings',
+widget_layout: 'horizontal',
+});});
+</script>

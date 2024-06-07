@@ -1,0 +1,744 @@
+paths:
+  uploads: assets/img
+  dam_uploads: raw
+
+_inputs:
+  title:
+    type: text
+    comment: Title of the page
+  
+  description:
+    type: text
+    comment: Description of the page
+
+  metaTitle:
+    type: text
+    comment: Meta title of the page
+
+  metaDescription:
+    type: text
+    comment: Meta description of the page
+
+  author:
+    type: text
+    comment: Author of the page
+
+  image:
+    type: image
+    comment: Image at page top
+
+  icon:
+    comment: Icon for career slider
+    type: file
+    options:
+      uploads_dir: assets/img/icons
+      accepts_mime_types:
+        - image/svg+xml
+      mime_type: image/svg+xml
+
+  filename:
+    type: text
+    comment: Image filename
+  
+  alt:
+    type: text
+    comment: Image alt text
+
+  weight:
+    type: number
+    comment: Hierarchy of the page
+
+  highlight:
+    type: switch
+    comment: Should the page stand out above the rest
+
+  noCrawl:
+    type: switch
+    comment: Should this page be ommitted from crawlers
+
+  selectTitle:
+    type: text
+    comment: Label used on dropdown selection
+
+  topCitiesTitle:
+    type: text
+    comment: Heading above list of Top Cities
+
+  topCities:
+    type: array
+    comment: List of top cities
+
+  topCities[*]:
+    type: select
+    options:
+      values: collections.near-you
+
+  relatedArticles:
+    type: array
+    comment: List of related articles
+
+  relatedArticles[*]:
+    type: select
+    options:
+      values: collections.featured-content
+
+  relatedCareers:
+    type: array
+    comment: List of related articles
+
+  relatedCareers[*]:
+    type: select
+    options:
+      values: collections.careers
+
+  sliderPages:
+    type: array
+    comment: List of pages on slider
+
+  sliderPages[*]:
+    type: select
+    options:
+      values: collections.near-you
+
+  headerLogo:
+    type: file
+    options:
+      uploads_dir: assets/img/icons
+      accepts_mime_types:
+        - image/svg+xml
+      mime_type: image/svg+xml
+
+  headerIcon:
+    type: file
+    options:
+      uploads_dir: assets/img/icons
+      accepts_mime_types:
+        - image/svg+xml
+      mime_type: image/svg+xml
+
+  footerLogo:
+    type: file
+    options:
+      uploads_dir: assets/img/icons
+      accepts_mime_types:
+        - image/svg+xml
+      mime_type: image/svg+xml
+
+  footerIcon:
+    type: file
+    options:
+      uploads_dir: assets/img/icons
+      accepts_mime_types:
+        - image/svg+xml
+      mime_type: image/svg+xml
+
+  dataCareer:
+    type: select
+    options:
+      values:
+        - Aircraft Mechanic
+        - Auto Mechanic
+        - Carpentry
+        - CNC Machinist
+        - Electrician
+        - HVAC
+        - Plumbing
+        - Truck Driving
+        - Welder
+        - Wind Turbine Technician
+        
+  include_esyoh:
+    type: switch
+    default: false
+    comment: Whether to include the eyoh widget or not
+
+  include_careernow:
+    type: switch
+    default: false
+    comment: Whether to include the careernow widget or not
+
+menu:
+    type: object
+    comment: Navigation menu
+    _structures:
+      values:
+        - label: Header
+          value:
+            header:
+              identifier:
+                comment: Identifier for use with 'parent'
+              parent:
+                comment: Identifier of the parent section
+              weight:
+                comment: Lower weight show first
+
+        - label: Footer
+          value:
+            header:
+              identifier:
+                comment: Identifier for use with 'parent'
+              parent:
+                comment: Identifier of the parent section
+              weight:
+                comment: Lower weight show first
+
+collections_config:
+  pages:
+    name: Pages
+    description: Main pages
+    icon: pages
+    path: content/
+
+    output: true
+    _enabled_editors: [content, data]
+
+    add_options:
+      - name: Add a page
+        schema: default
+
+    text_key: title
+    subtext_key: description
+    image_key: image
+
+    schemas:
+      default:
+        path: schemas/page.md
+
+  careers:
+    name: Careers
+    description: Career sections
+    icon: work
+    path: content/careers
+    output: true
+    _enabled_editors: [content, data]
+
+    add_options:
+      - name: Add a section
+        schema: section
+
+      - name: Add a page
+        schema: page
+        icon: article
+
+    schemas:
+      section:
+        name: Career section
+        path: schemas/career/section.md
+
+      page:
+        name: Career page
+        path: schemas/career/page.md
+  
+  careerOverviews:
+    name: Career Overview
+    description: Career Overviews section
+    icon: work
+    path: content/careers
+    output: true
+    _enabled_editors: [content, data]
+    filter:
+      base: strict
+      include:
+        - dental-assistant/career-overview.md
+        - dental-hygienist/career-overview.md
+        - emt/career-overview.md
+        - medical-assistant/career-overview.md
+        - medical-biller-coder/career-overview.md
+        - nutritionist/career-overview.md
+        - pharmacy-technician/career-overview.md
+        - phlebotomist/career-overview.md
+        - physical-therapist/career-overview.md
+        - radiologic-technologist/career-overview.md
+        - surgical-technologist/career-overview.md
+
+    add_options:
+      - name: Add a section
+        schema: section
+
+      - name: Add a page
+        schema: page
+        icon: article
+
+    schemas:
+      section:
+        name: Career section
+        path: schemas/career/section.md
+
+      page:
+        name: Career page
+        path: schemas/career/page.md
+
+  featured-content:
+    name: Featured Content
+    description: Featured Content sections
+    icon: article
+    path: content/featured-content
+    output: true
+    _enabled_editors: [content, data]
+
+    add_options:
+      - name: Add a section
+        schema: section
+
+      - name: Add a page
+        schema: page
+        icon: article
+
+    schemas:
+      section:
+        name: Featured Content section
+        path: schemas/featured-content/section.md
+
+      page:
+        name: Featured Content page
+        path: schemas/featured-content/page.md
+
+  near-you:
+    name: Schools Near You
+    description: Schools Near You sections
+    icon: article
+    path: content/near-you
+    output: true
+    _enabled_editors: [content, data]
+
+    add_options:
+      - name: Add a section
+        schema: section
+
+      - name: Add a page
+        schema: page
+        icon: article
+
+    schemas:
+      section:
+        name: Schools Near You section
+        path: schemas/near-you/section.md
+
+      page:
+        name: Schools Near You page
+        path: schemas/near-you/page.md
+  
+  states:
+    name: States
+    description: States
+    icon: article
+    path: content/states
+    output: true
+    _enabled_editors: [content, data]
+
+    add_options:
+      - name: Add a section
+        schema: section
+
+      - name: Add a page
+        schema: page
+        icon: article
+
+  config:
+    name: Configuration
+    description: Hugo configuration
+    icon: settings
+    path: config/
+    output: false
+    _enabled_editors: [data]
+    disable_add: true
+    disable_add_folder: true
+    disable_file_actions: true
+
+  data:
+    name: Data
+    description: Site copy and navs
+    icon: settings
+    path: data/
+    output: false
+    _enabled_editors: [data]
+    disable_add: true
+    disable_add_folder: true
+    disable_file_actions: true
+
+_snippets_imports:
+  hugo: true
+  
+_snippets:
+  figure:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Image
+      image:
+      subtext:
+        - key: src
+        - 1 x Image
+      gallery:
+        text: Image
+        fit: fill
+    _inputs:
+      src:
+        label: Source
+        type: file
+        cascade: true
+    definitions:
+      shortcode_name: figure
+      named_args:
+        - editor_key: src
+          type: string
+  bio:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: gallery
+      icon: vertical_split
+      text: Bio
+      image: 
+      subtext:
+        - key: alt
+        - Row containing one Bio
+      gallery:
+        image: 
+        text: 1 x Bio
+        fit: fill
+    _inputs:
+      bioPic:
+        label: Picture
+        type: file
+        cascade: true
+      bioContent:
+        type: html
+        cascade: true
+    definitions:
+      shortcode_name: bio
+      named_args:
+        - editor_key: bioPic
+          type: string
+        - editor_key: bioContent
+          type: string
+  funnel-shortcode:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: gallery
+      icon: vertical_split
+      text: funnel-shortcode
+      image: 
+      subtext:
+        - key: alt
+        - Row containing Funnel
+      gallery:
+        image: 
+        text: 1 x Funnel
+        fit: fill
+    definitions:
+      shortcode_name: funnel-shortcode
+  school-card:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: School Card
+      image:
+      subtext:
+        - key: schoolname
+        - 1 x School Card
+      gallery:
+        text: School Card
+        fit: fill
+    _inputs:
+      schoolname:
+        label: School Title
+        type: text
+        cascade: true
+      statename:
+        label: State
+        type: text
+        cascade: true
+      stateAB:
+        label: State Abbreviation
+        type: text
+        cascade: true
+      cityname:
+        label: City
+        type: text
+        cascade: true
+      studytype:
+        label: Study Type
+        type: text
+        cascade: true
+      tuition:
+        label: Tuition
+        type: text
+        cascade: true
+      schoollink:
+        label: School Link
+        type: url
+        cascade: true
+      rel:
+        type: select
+        options:
+          allow_empty: true
+          values:
+            - nofollow
+            - noopener
+            - sponsored
+            - author
+            - alternate
+            - external
+            - bookmark
+            - help
+            - license
+            - next
+            - noreferrer
+            - prev
+            - search
+        cascade: true
+      buttontext:
+        label: Button Text
+        type: text
+        cascade: true
+      teaser:
+        label: Teaser Text
+        type: html
+        cascade: true
+        options:
+          bold: true
+          format: p h1 h2 h3 h4 h5 h6 pre address div
+          italic: true
+          underline: true
+          bulletedlist: true
+          indent: true
+          numberedlist: true
+          code: true
+          embed: true
+          horizontalrule: true
+          image: true
+          table: true
+          left: align-left
+          center: align-center
+          right: align-right
+          justify: align-justify
+          link: true
+          image_size_attributes: true
+      maintext:
+        label: Main Text
+        type: html
+        cascade: true
+        options:
+          bold: true
+          format: p h1 h2 h3 h4 h5 h6 pre address div
+          italic: true
+          underline: true
+          bulletedlist: true
+          indent: true
+          numberedlist: true
+          code: true
+          embed: true
+          horizontalrule: true
+          image: true
+          table: true
+          left: align-left
+          center: align-center
+          right: align-right
+          justify: align-justify
+          image_size_attributes: true
+      contactdetails:
+        label: Contact Details
+        type: html
+        cascade: true
+        options:
+          bold: true
+          format: p h1 h2 h3 h4 h5 h6 pre address div
+          italic: true
+          underline: true
+          bulletedlist: true
+          indent: true
+          numberedlist: true
+          code: true
+          embed: true
+          horizontalrule: true
+          image: true
+          table: true
+          link: true
+          left: align-left
+          center: align-center
+          right: align-right
+          justify: align-justify
+          image_size_attributes: true
+    definitions:
+      shortcode_name: school-card
+      named_args:
+        - editor_key: schoolname
+          type: string
+        - editor_key: statename
+          type: string
+        - editor_key: stateAB
+          type: string
+        - editor_key: cityname
+          type: string
+        - editor_key: studytype
+          type: string
+        - editor_key: teaser
+          type: string
+        - editor_key: maintext
+          type: string
+        - editor_key: tuition
+          type: string
+        - editor_key: contactdetails
+          type: string
+        - editor_key: schoollink
+          type: string
+        - editor_key: rel
+          type: string
+        - editor_key: buttontext
+          type: string
+  affiliate-multi:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Affiliate Multi
+      image:
+      subtext:
+        - key: affiliatemulti
+        - 1 x Affiliate Multi
+      gallery:
+        text: Affiliate Multi
+        fit: fill
+    definitions:
+      shortcode_name: affiliate-multi
+  affiliate-listing-catid:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Affiliate Listing - Category ID
+      image:
+      subtext:
+        - key: affiliatelistingcatid
+        - 1 x Affiliate Listing - Cat ID
+      gallery:
+        text: Affiliate Listing - Cat ID
+        fit: fill
+    _inputs:
+      title:
+        label: Title (if available)
+        type: text
+        cascade: true
+      category-id:
+        label: Category ID
+        type: text
+        cascade: true
+      results:
+        label: Number of results to show
+        type: select
+        options:
+          values:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+    definitions:
+      shortcode_name: affiliate-listing-catid
+      named_args:
+        - editor_key: category-id
+          type: string
+        - editor_key: results
+          type: string
+        - editor_key: title
+          type: string
+  affiliate-listing-pc:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Affiliate Listing - Course Code
+      image:
+      subtext:
+        - key: affiliatemulti
+        - 1 x Affiliate Listing - Course Code
+      gallery:
+        text: Affiliate Listing - Course Code
+        fit: fill
+    _inputs:
+      course-code:
+        label: Course Code
+        type: text
+        cascade: true
+      results:
+        label: Number of results to show
+        type: select
+        options:
+          values:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+    definitions:
+      shortcode_name: affiliate-listing-pc
+      named_args:
+        - editor_key: course-code
+          type: string
+        - editor_key: results
+          type: string
+  affiliate-search:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Affiliate Search
+      image:
+      subtext:
+        - key: affiliatesearch
+        - 1 x Affiliate Search
+      gallery:
+        text: Affiliate Search
+        fit: fill
+    definitions:
+      shortcode_name: affiliate-search
+  career-now:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Career Now Search
+      image:
+      subtext:
+        - key: careernowsearch
+        - 1 x Career Now Search
+      gallery:
+        text: Career Now Search
+        fit: fill
+    definitions:
+      shortcode_name: career-now-search      
+  find-weld-schools:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      view: text
+      icon: notes
+      text: Esyoh Zip Search
+      image:
+      subtext:
+        - key: esyohzipsearch
+        - 1 x Esyoh Zip Search
+      gallery:
+        text: Esyoh Zip Search
+        fit: fill
+    definitions:
+      shortcode_name: find-weld-schools  

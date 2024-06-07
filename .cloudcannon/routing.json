@@ -1,0 +1,124 @@
+{
+  "routes": [
+    {
+      "from": "/careers/Aircraft-Mechanic/",
+      "status": 301,
+      "to": "/careers/Aircraft-Mechanic/career-overview/"
+    },
+    {
+      "from": "/careers/Auto-Mechanic/",
+      "status": 301,
+      "to": "/careers/Auto-Mechanic/career-overview/"
+    },
+    {
+      "from": "/careers/Electrician/",
+      "status": 301,
+      "to": "/careers/Electrician/career-overview/"
+    },
+    {
+      "from": "/careers/HVAC-Technician/",
+      "status": 301,
+      "to": "/careers/HVAC-Technician/career-overview/"
+    },
+    {
+      "from": "/careers/Plumber/",
+      "status": 301,
+      "to": "/careers/Plumber/career-overview/"
+    },
+    {
+      "from": "/careers/Solar-Technician/",
+      "status": 301,
+      "to": "/careers/Solar-Technician/career-overview/"
+    },
+    {
+      "from": "/careers/Welder/",
+      "status": 301,
+      "to": "/careers/Welder/career-overview/"
+    },
+    {
+      "from": "/careers/carpenter/",
+      "status": 301,
+      "to": "/careers/carpenter/career-overview/"
+    },
+    {
+      "from": "/careers/cnc-machinist/",
+      "status": 301,
+      "to": "/careers/cnc-machinist/career-overview/"
+    },
+    {
+      "from": "/careers/home-and-building-inspector/",
+      "status": 301,
+      "to": "/careers/home-and-building-inspector/career-overview/"
+    },
+    {
+      "from": "/careers/masonry-worker/",
+      "status": 301,
+      "to": "/careers/masonry-worker/career-overview/"
+    },
+    {
+      "from": "/careers/travel-agent/",
+      "status": 301,
+      "to": "/careers/travel-agent/career-overview/"
+    },
+    {
+      "from": "/careers/truck-driver/",
+      "status": 301,
+      "to": "/careers/truck-driver/career-overview/"
+    },
+    {
+      "from": "/careers/wind-turbine-technician/",
+      "status": 301,
+      "to": "/careers/wind-turbine-technician/career-overview/"
+    },
+    {
+      "from": "/(.*).html",
+      "status": 301,
+      "to": "/"
+    },
+    {
+      "from": "/_media_/(.*)",
+      "status": 301,
+      "to": "/"
+    },
+    {
+      "from": "/(.*)/index-md/",
+      "status": 301,
+      "to": "/"
+    },
+    {
+      "from": "",
+      "status": 301,
+      "to": "/"
+    },
+    {
+      "from": "/careers/(.*)/career-overview",
+      "status": 301,
+      "to": "/careers/$1/career-overview/"
+    },
+    {
+      "from": "/careers/(.*)/(.*)-career-overview/",
+      "status": 301,
+      "to": "/careers/$1/career-overview/"
+    },
+    {
+      "from": "/careers/",
+      "status": 301,
+      "to": "/near-you/"
+    },
+    {
+      "from": "/near-you",
+      "status": 301,
+      "to": "/near-you/"
+    },
+    {
+      "from": "/tags/",
+      "status": 301,
+      "to": "/"
+    },
+    {
+      "from": "/categories/",
+      "status": 301,
+      "to": "/"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+schools:
+  - name: Penn Foster
+    link: https://lp.pennfoster.edu/ppc/online-courses
+  - name: MedCerts
+    link: https://medcerts.com
+  - name: Gran Canyon University
+    link: https://explore.gcu.edu/general/
+  - name: Arizona State University
+    link: https://asuonline.asu.edu
+  - name: Purdue University
+    link: https://onlinedegrees.purdue.edu/purdue-global/
+  - name: UEI College
+    link: https://www.uei.edu

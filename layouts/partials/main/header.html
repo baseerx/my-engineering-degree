@@ -1,0 +1,194 @@
+{{ $constellation := resources.Get "/img/constellation.svg" }}
+{{ $careers := $.Site.GetPage "section" "careers" }}
+
+<header class="w-full">
+  <section class="bg-white grid relative w-full z-75" data-type="header" data-nosnippet>
+    <div
+      class="flex col-start-2 items-center justify-between row-start-2 w-full"
+      data-nosnippet
+    >
+      <a
+        class="focus:no-underline hover:no-underline grid grid-cols-2-auto grid-rows-1 place-items-center m-0 no-underline p-0 w-auto"
+        href="{{ .Site.BaseURL }}"
+      >
+        <p class="sr-only">{{ .Site.Title }}</p>
+        {{ with .Site.Params.headerLogo }}
+          {{ partial "lib/img.html" (dict "src" . "alt" $.Site.Title "size" 320 "height" 60 "imgClass" "header:block hidden w-full" "hidden" "true") }}
+        {{ end }}
+        {{ with .Site.Params.headerIcon }}
+          {{ partial "lib/img.html" (dict "src" . "alt" $.Site.Title "size" 64 "height" 40 "imgClass" "block header:hidden w-16" "hidden" "true") }}
+        {{ end }}
+      </a>
+      <nav
+        class="hidden items-end justify-end md:flex mt-1 overflow-hidden w-full"
+      >
+        <ul
+          class="gap-x-6 grid grid-cols-3-auto grid-rows-1 place-items-center list-none m-0 p-0"
+        >
+          {{ range $.Site.Sections }}
+            {{ $pageMatch := findRE .RelPermalink $.RelPermalink }}
+            {{ $parent := replaceRE "/" "" .RelPermalink }}
+            {{ $hasChildren := cond (eq .Title "Careers") "true" "false" }}
+            {{ $isCurrentPage := cond (ne (len $pageMatch) 0) "true" "false" }}
+
+            <li
+              class="flex items-end justify-start m-0 p-0"
+              data-children="{{ $hasChildren }}"
+              data-parent="{{ $parent }}"
+              data-inpage="{{ $isCurrentPage }}"
+            >
+              {{ if eq .Title "Careers" }}
+              <button
+                type="button"
+                class="bg-transparent border-0 border-b-2 border-solid border-transparent cursor-pointer duration-300 ease-in-out focus:text-foreground focus:border-primary focus:no-underline font-semibold hover:text-foreground hover:border-primary hover:no-underline leading-none m-0 outline-none px-0 py-1 no-underline text-foreground text-lg transition-all visited:text-foreground whitespace-nowrap"
+                data-active="{{ $isCurrentPage }}"
+              >
+                {{ .Title }}
+              </button>
+              {{ else }}
+                {{ if and (ne .Title "Schools Near You") (ne .Title "States") }}
+                <a
+                  class="border-0 border-b-2 border-solid border-transparent duration-300 ease-in-out focus:text-foreground focus:border-primary focus:no-underline font-semibold hover:text-foreground hover:border-primary hover:no-underline leading-none m-0 px-0 py-1 no-underline text-foreground text-lg transition-all visited:text-foreground whitespace-nowrap"
+                  href="{{ .Permalink }}"
+                  data-active="{{ $isCurrentPage }}"
+                >
+                  {{ .Title }}
+                </a>
+                {{ end }}
+              {{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </nav>
+      <button
+        id="mobile-nav-button"
+        class="bg-transparent block border-none m-0 md:hidden outline-none p-0"
+        type="button"
+      >
+        {{ partial "lib/img.html" (dict "src" "menu.svg" "alt" .Site.Title "size" 32 "height" 32 "imgClass" "w-8" "hidden" "true") }}
+        <span class="sr-only">Open Navigation Menu</span>
+      </button>
+    </div>
+  </section>
+  <section
+    class="absolute bg-repeat bg-white duration-300 ease-in-out grid left-0 right-0 top-0 transition-transform w-full z-50"
+    style="background-image: url({{ $constellation.Permalink }});"
+    data-type="subnav"
+    data-active="false"
+    data-nosnippet
+  >
+    <div class="col-start-2 flex items-center justify-end row-start-2 w-full" data-nosnippet>
+      <nav
+        class="ease-in-out flex items-end justify-start opacity-0 overflow-visible transition-opacity w-full"
+        data-parent="careers"
+        data-active="false"
+      >
+        <ul
+          class="gap-y-5 grid grid-cols-1 grid-rows-3-auto place-content-start place-items-center list-none m-0 p-0"
+        >
+          {{ range $careers.Pages }}
+            {{ $link := print .RelPermalink "career-overview" }}
+            <li class="flex items-end justify-start ml-0 mr-auto my-0 p-0">
+              <a
+                class="border-0 border-l-2 border-solid border-selection-dark duration-300 ease-in-out focus:border-l-4 focus:border-primary focus:no-underline focus:pl-2 focus:text-foreground hover:border-l-4 hover:border-primary hover:no-underline hover:pl-2 hover:text-foreground leading-tight m-0 pl-1 pr-0 py-0 no-underline text-foreground text-lg transition-all visited:text-foreground whitespace-nowrap"
+                href="{{ $link | absURL }}/"
+              >
+                {{ .Title }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <section
+    class="absolute bg-repeat bg-white duration-300 ease-in-out grid h-screen inset-0 md:hidden transition-all w-full z-hidden"
+    style="background-image: url({{ $constellation.Permalink }});"
+    data-type="mobilenav"
+    data-active="false"
+    data-nosnippet
+  >
+    <button
+      class="absolute bg-transparent block border-none m-0 outline-none p-0 right-1 top-1 z-100"
+      type="button"
+      data-type="close"
+    >
+      {{ partial "lib/img.html" (dict "src" "close.svg" "alt" .Site.Title "size" 32 "imgClass" "w-8" "hidden" "true") }}
+      <span class="sr-only">Close Navigation Menu</span>
+    </button>
+    <nav
+      class="col-start-2 ease-in-out flex items-start justify-start overflow-visible relative row-start-2 transition-all w-full"
+    >
+      <ul
+        class="absolute duration-300 ease-in-out gap-y-5 grid grid-cols-1 grid-rows-4-auto place-content-start place-items-center left-0 list-none m-0 p-0"
+        data-type="mobileparent"
+        data-active="true"
+      >
+        {{ range $.Site.Sections }}
+          {{ $pageMatch := findRE .RelPermalink $.RelPermalink }}
+          {{ $parent := replaceRE "/" "" .RelPermalink }}
+          {{ $hasChildren := cond (eq .Title "Careers") "true" "false" }}
+          {{ $isCurrentPage := cond (ne (len $pageMatch) 0) "true" "false" }}
+          {{ $link := cond (ne (len $pageMatch) 0) "" .Permalink }}
+         {{ if and (ne .Title "Schools Near You") (ne .Title "States") }}
+          <li
+            class="flex items-end justify-start ml-0 mr-auto my-0 p-0"
+            data-children="{{ $hasChildren }}"
+            data-parent="{{ $parent }}"
+            data-inpage="{{ $isCurrentPage }}"
+          >
+            {{ if eq $hasChildren "true" }}
+            <button
+            {{ else}}
+            <a
+            {{ end }}
+              class="bg-transparent border-0 border-l-4 border-solid border-transparent duration-300 ease-in-out focus:text-foreground focus:border-primary focus:no-underline focus:pl-1 hover:text-foreground hover:border-primary hover:no-underline hover:pl-1 leading-tight m-0 p-0 no-underline text-foreground text-2xl transition-all visited:text-foreground whitespace-nowrap"
+              {{ if ne $hasChildren "true" }}href="{{ $link }}"{{ end }}
+              data-active="{{ $isCurrentPage }}"
+            >
+              {{ .Title }}
+            {{ if eq $hasChildren "true" }}
+            </button>
+            {{ else}}
+            </a>
+            {{ end }}
+          </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+      <ul
+        class="absolute duration-300 ease-in-out gap-y-5 grid grid-cols-1 grid-rows-4-auto place-content-start place-items-center left-0 list-none m-0 opacity-0 p-0 transition-all"
+        data-type="mobilechild"
+        data-parent="careers"
+        data-active="false"
+      >
+        {{ range $careers.Pages }}
+          {{ $link := print .RelPermalink "career-overview" }}
+          <li class="flex items-end justify-start ml-0 mr-auto my-0 p-0">
+            <a
+              class="border-0 border-l-4 border-solid border-transparent duration-300 ease-in-out focus:text-foreground focus:border-primary focus:no-underline focus:pl-1 hover:text-foreground hover:border-primary hover:no-underline hover:pl-1 leading-tight m-0 p-0 no-underline text-foreground text-2xl transition-all visited:text-foreground whitespace-nowrap"
+              href="{{ $link | absURL }}/"
+            >
+              {{ .Title }}
+            </a>
+          </li>
+        {{ end }}
+        <li class="flex items-end justify-start ml-0 mr-auto my-0 p-0">
+          <button
+            class="bg-transparent border-none flex items-center justify-start m-0 opacity-75 outline-none p-0"
+            type="button"
+            data-type="back"
+          >
+            {{ partial "lib/img.html" (dict "src" "back.svg" "alt" "Back" "size" 24 "imgClass" "w-8" "hidden" "true") }}
+            <span class="capitalize ml-4 text-2xl">Main Menu</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</header>
+<div
+  class="absolute bg-black bg-opacity-50 h-full inset-0 opacity-0 w-full z-hidden"
+  data-type="overlay"
+  data-active="false"
+></div>

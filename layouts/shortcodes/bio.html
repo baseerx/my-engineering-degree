@@ -1,0 +1,8 @@
+<div class="grid grid-cols-3 gap-4 my-4">
+<div class="mt-4">
+  <img src="{{ .Get "bioPic" }}" class="p-5" />
+  
+  
+</div>
+<div class="col-span-2 p-5">{{ .Get "bioContent" | markdownify }}</div>
+</div>

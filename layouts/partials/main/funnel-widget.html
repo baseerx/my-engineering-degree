@@ -1,0 +1,29 @@
+{{ $topography := resources.Get "/img/topography.svg" }}
+{{ $data := .Site.Data.funnel }}
+{{ $location := .Title | replaceRE "\\s" "-" | lower }}
+
+<section
+  id="funnel"
+  class="bg-repeat bg-foreground col-span-4 flex items-center justify-center overflow-hidden mx-auto px-1 py-12 row-start-4 w-full"
+  style="background-image: url({{ $topography.Permalink }});"
+  data-nosnippet
+>
+  <div
+    class="bg-white duration-300 ease-in-out m-0 p-2 rounded shadow-md w-full searchAdWrap" 
+    data-nosnippet
+  >
+   <script type="text/javascript" src="https://www.esyoh.com/clients/js/widget.js?ver=3.0.0" id="esyoh-widget-js"></script>
+<div class="esy_widget_container"></div>
+<script data-cfasync="false" type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {
+ESY.Widget({
+domain_id: 'toptradeschools.com',
+widget_id: '808916',
+widget_layout: 'horizontal',
+});});
+</script>
+
+
+
+  </div>
+</section>

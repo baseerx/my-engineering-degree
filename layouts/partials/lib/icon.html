@@ -1,0 +1,25 @@
+{{ $url := "/svg/symbols.svg" }}
+
+{{ $x := . }}
+
+{{ if (not (reflect.IsMap .)) }}
+  {{ $x = (dict "name" .) }}
+{{ end }}
+
+{{ $href := (printf "%s#%s" $url $x.name) | relURL }}
+
+{{ $class := printf "icon icon-%s" $x.name }}
+{{ with $x.class }}{{ $class = printf "%s %s" $class . }}{{ end }}
+
+{{ $fill := "" }}
+{{ with $x.fill }}{{ $fill = printf "fill: %s;" . }}{{ end }}
+
+{{ $size := "" }}
+{{ with $x.size }}{{ $size = printf "size: %s;" . }}{{ end }}
+
+{{ $style := print $fill $size | safeCSS }}
+
+
+<svg class="{{ $class }}" {{ with $style }}style="{{ . }}"{{ end }}>
+  <use xlink:href="{{ $href }}"></use>
+</svg>

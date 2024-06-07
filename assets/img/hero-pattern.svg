@@ -1,0 +1,16 @@
+<svg width="100%" height="100%" viewBox="0 0 3724 2100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g>
+        <rect x="0" y="0" width="3724" height="2100" style="fill:white;fill-rule:nonzero;" />
+        <path
+            d="M-90.247,1050C-90.247,1050 1133.51,1683.24 2009.33,1503.27C2885.16,1323.31 3179.1,794.689 3856.96,1050L3856.96,2175.14L-90.247,2199.13L-90.247,1050Z"
+            style="fill:rgb(15,48,87);fill-rule:nonzero;" />
+        <path
+            d="M2009.33,1475.27C2398.31,1395.34 2672.5,1246.65 2916.54,1128.4C1528.24,1679.51 0,1065.98 0,1065.98C298.376,1206.37 1275.86,1625.98 2009.33,1475.27Z"
+            style="fill:rgb(245,134,52);fill-rule:nonzero;" />
+        <path
+            d="M3724,2100L0,2100L0,1123.23C270.174,1335.8 1097.22,1937.99 1795.66,1937.99C1868.57,1937.99 1940,1931.43 2009.33,1917.19C2781.83,1758.46 3101.68,1006.44 3631.53,1006.44C3661.63,1006.44 3692.42,1008.87 3724,1013.96L3724,2100Z"
+            style="fill:rgb(12,39,74);fill-rule:nonzero;" />
+    </g>
+</svg>
